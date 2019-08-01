@@ -1,3 +1,5 @@
+package Perceptron;
+
 import static org.junit.Assert.*;
 
 import Perceptron.AbstractPerceptron;

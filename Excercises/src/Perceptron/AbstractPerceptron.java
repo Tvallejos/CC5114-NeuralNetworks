@@ -1,3 +1,5 @@
+package Perceptron;
+
 public abstract class AbstractPerceptron implements Perceptron{
     private int w1;
     private int w2;

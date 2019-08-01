@@ -1,3 +1,5 @@
+package Perceptron;
+
 import Perceptron.AbstractPerceptron;
 import Perceptron.AndPerceptron;
 import org.junit.Before;

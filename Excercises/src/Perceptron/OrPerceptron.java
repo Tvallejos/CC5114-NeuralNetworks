@@ -1,5 +1,7 @@
+package Perceptron;
+
 public class OrPerceptron extends AbstractPerceptron {
-    OrPerceptron() {
+    public OrPerceptron() {
         super(2, 2, -1);
     }
 }

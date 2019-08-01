@@ -1,5 +1,7 @@
+package Perceptron;
+
 public class NandPerceptron extends AbstractPerceptron {
-    NandPerceptron() {
+    public NandPerceptron() {
         super(-2, -2, 3);
     }
 }
