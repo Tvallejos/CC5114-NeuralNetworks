@@ -1,11 +1,9 @@
 package Perceptron;
-
-import Perceptron.AbstractPerceptron;
-import Perceptron.NandPerceptron;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+
 
 public class NandPerceptronTest {
 

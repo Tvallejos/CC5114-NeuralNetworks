@@ -1,14 +1,17 @@
 package Perceptron;
 
 public abstract class AbstractPerceptron implements Perceptron{
-    private int w1;
-    private int w2;
-    private int b;
+    protected int w1;
+    protected int w2;
+    protected int b;
+    private double lr;
+
 
     AbstractPerceptron(int w1,int w2,int b){
         this.w1 = w1;
         this.w2 = w2;
         this.b = b;
+        this.lr = 0.1;
 
     }
 
@@ -23,6 +26,8 @@ public abstract class AbstractPerceptron implements Perceptron{
 
     }
 
+
+
     public int getW1() {
         return w1;
     }
@@ -33,5 +38,15 @@ public abstract class AbstractPerceptron implements Perceptron{
 
     public int getB() {
         return b;
+    }
+
+    public void learn(int x1, int x2,int desiredOutput){
+        int realOutput = check(x1,x2);
+        int diff = desiredOutput - realOutput;
+
+        this.w1+= lr*x1*diff;
+        this.w2+= lr*x2*diff;
+
+        b+= lr*diff;
     }
 }
