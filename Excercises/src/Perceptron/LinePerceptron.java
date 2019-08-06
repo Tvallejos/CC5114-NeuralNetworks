@@ -2,7 +2,13 @@ package Perceptron;
 
 import java.util.Random;
 
-public class LinePerceptron extends AbstractPerceptron {
+/**
+ * Class which represents a perceptron that will be trained
+ * to determine a line
+ *
+ * initialized with random weights and bias values
+ */
+public class LinePerceptron extends BasePerceptron {
     public LinePerceptron(int seed) {
         super(0, 0, 0);
         int low = -2;

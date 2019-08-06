@@ -1,13 +1,16 @@
 package Perceptron;
 
-public abstract class AbstractPerceptron implements Perceptron {
+/**
+ * Abstract implementation from
+ */
+public class BasePerceptron implements Perceptron {
     protected double w1;
     protected double w2;
     protected double b;
     private double lr;
 
 
-    AbstractPerceptron(int w1, int w2, int b) {
+    BasePerceptron(int w1, int w2, int b) {
         this.w1 = w1;
         this.w2 = w2;
         this.b = b;

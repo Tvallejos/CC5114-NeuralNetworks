@@ -1,7 +1,5 @@
 package Perceptron;
 
-import Perceptron.AbstractPerceptron;
-import Perceptron.AndPerceptron;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 public class AndPerceptronTest {
 
 
-        private AbstractPerceptron and;
+        private BasePerceptron and;
 
         @Before
         public void Setup(){

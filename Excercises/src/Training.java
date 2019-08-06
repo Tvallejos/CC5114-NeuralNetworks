@@ -1,4 +1,5 @@
-import Perceptron.AbstractPerceptron;
+
+import Perceptron.BasePerceptron;
 import Perceptron.LinePerceptron;
 
 import java.util.Random;
@@ -10,11 +11,11 @@ public class Training {
     }
 
     public static void main(String[] args) {
-        AbstractPerceptron LinePerceptron = new LinePerceptron(0);
+        BasePerceptron LinePerceptron = new LinePerceptron(0);
         int m = 1;
         int n = 0;
         // line is x = y
-        int numberOfTrainings = 10000;
+        int numberOfTrainings = 1000;
         int numberOfTests = 1000;
         int fails = 0;
 

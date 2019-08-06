@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 public class NandPerceptronTest {
 
 
-    private AbstractPerceptron nand;
+    private BasePerceptron nand;
 
     @Before
     public void Setup() {

@@ -1,8 +1,9 @@
-import Perceptron.AbstractPerceptron;
+
+import Perceptron.BasePerceptron;
 import Perceptron.NandPerceptron;
 
 public class SumGate {
-    AbstractPerceptron Nand;
+    BasePerceptron Nand;
 
     int sum;
     int carry;

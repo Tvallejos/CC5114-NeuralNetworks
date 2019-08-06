@@ -2,13 +2,11 @@ package Perceptron;
 
 import static org.junit.Assert.*;
 
-import Perceptron.AbstractPerceptron;
-import Perceptron.OrPerceptron;
 import org.junit.Test;
 import org.junit.Before;
 
 public class OrPerceptronTest {
-    private AbstractPerceptron or;
+    private BasePerceptron or;
 
     @Before
     public void Setup(){
