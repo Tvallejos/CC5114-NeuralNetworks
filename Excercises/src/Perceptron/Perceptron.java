@@ -1,7 +1,8 @@
 package Perceptron;
 
 public interface Perceptron {
-    int check(int x1,int x2);
-    void learn(int x1,int x2, int desiredOutput);
+    int check(double x1, double x2);
+
+    void learn(double x1, double x2, int desiredOutput);
 
 }
