@@ -66,3 +66,139 @@ fabric.properties
 
 # Android studio 3.1+ serialized cache file
 **/.idea/caches/build_file_checksums.ser
+
+##########
+# PYTHON #
+##########
+# Created by https://www.gitignore.io/api/python
+# Edit at https://www.gitignore.io/?templates=python
+
+### Python ###
+# Byte-compiled / optimized / DLL files
+**/__pycache__/
+Excercises/*.py[cod]
+Excercises/*$py.class
+
+# C extensions
+Excercises/*.so
+
+# Distribution / packaging
+Excercises/.Python
+Excercises/build/
+Excercises/develop-eggs/
+Excercises/dist/
+Excercises/downloads/
+Excercises/eggs/
+Excercises/.eggs/
+Excercises/lib/
+Excercises/lib64/
+Excercises/parts/
+Excercises/sdist/
+Excercises/var/
+Excercises/wheels/
+Excercises/pip-wheel-metadata/
+Excercises/share/python-wheels/
+Excercises/*.egg-info/
+Excercises/.installed.cfg
+Excercises/*.egg
+Excercises/MANIFEST
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+Excercises/*.manifest
+Excercises/*.spec
+
+# Installer logs
+Excercises/pip-log.txt
+Excercises/pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+Excercises/htmlcov/
+Excercises/.tox/
+Excercises/.nox/
+Excercises/.coverage
+Excercises/.coverage.*
+Excercises/.cache
+Excercises/nosetests.xml
+Excercises/coverage.xml
+Excercises/*.cover
+Excercises/.hypothesis/
+Excercises/.pytest_cache/
+
+# Translations
+Excercises/*.mo
+Excercises/*.pot
+
+# Django stuff:
+Excercises/*.log
+Excercises/local_settings.py
+Excercises/db.sqlite3
+Excercises/db.sqlite3-journal
+
+# Flask stuff:
+Excercises/instance/
+Excercises/.webassets-cache
+
+# Scrapy stuff:
+Excercises/.scrapy
+
+# Sphinx documentation
+Excercises/docs/_build/
+
+# PyBuilder
+Excercises/target/
+
+# Jupyter Notebook
+Excercises/.ipynb_checkpoints
+
+# IPython
+Excercises/profile_default/
+Excercises/ipython_config.py
+
+# pyenv
+Excercises/.python-version
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+#Pipfile.lock
+
+# celery beat schedule file
+Excercises/celerybeat-schedule
+
+# SageMath parsed files
+Excercises/*.sage.py
+
+# Environments
+Excercises/.env
+Excercises/.venv
+Excercises/env/
+Excercises/venv/
+Excercises/ENV/
+Excercises/env.bak/
+Excercises/venv.bak/
+
+# Spyder project settings
+Excercises/.spyderproject
+Excercises/.spyproject
+
+# Rope project settings
+Excercises/.ropeproject
+
+# mkdocs documentation
+Excercises//site
+
+# mypy
+Excercises/.mypy_cache/
+Excercises/.dmypy.json
+Excercises/dmypy.json
+
+# Pyre type checker
+Excercises/.pyre/
+
+# End of https://www.gitignore.io/api/python
+
+Excercises/*.txt
