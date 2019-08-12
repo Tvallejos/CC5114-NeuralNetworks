@@ -5,8 +5,8 @@ import Perceptron.NandPerceptron;
 public class SumGate {
     BasePerceptron Nand;
 
-    int sum;
-    int carry;
+    double sum;
+    double carry;
 
     // x1----------------------- NAND (----)(ans2)
     //    |                   -- NAND (----)-----|
@@ -25,7 +25,7 @@ public class SumGate {
 
     public void sum(int x1, int x2) {
         isInputBinary(x1, x2);
-        int ans1, ans2, ans3;
+        double ans1, ans2, ans3;
 
         ans1 = Nand.check(x1, x2);
         ans2 = Nand.check(x1, ans1);
@@ -41,11 +41,11 @@ public class SumGate {
     }
 
 
-    public int getSum() {
+    public double getSum() {
         return sum;
     }
 
-    public int getCarry() {
+    public double getCarry() {
         return carry;
     }
 }
