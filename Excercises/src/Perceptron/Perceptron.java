@@ -10,7 +10,7 @@ public interface Perceptron {
      * @param x2 input 2
      * @return Rosenblatt computed output
      */
-    int check(double x1, double x2);
+    double check(double x1, double x2);
 
     /**
      * Supervised learning algorithm, if the real output is different from the
