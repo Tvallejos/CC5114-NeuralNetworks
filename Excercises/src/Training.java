@@ -2,6 +2,11 @@
 import Perceptron.BasePerceptron;
 import Perceptron.LinePerceptron;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Random;
 
 public class Training {
@@ -38,17 +43,34 @@ public class Training {
                 LinePerceptron.learn(x, y, desired);
             }
         }
+        try {
+            //results will be saved on a file in this format
+            //x y desired
+            String timeLog = new SimpleDateFormat("yyyyMMdd_HHmmss").format(
+                    Calendar.getInstance().getTime());
+            File logFile=new File(timeLog+".txt");
 
-        for (int i = 0; i < numberOfTests; i++) {
-            x = xTestGen.nextDouble();
-            y = yTestGen.nextDouble();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(logFile));
+            String string;
 
-            desired = x * m + n > y ? 1 : 0;
+            for (int i = 0; i < numberOfTests; i++) {
+                x = xTestGen.nextDouble();
+                y = yTestGen.nextDouble();
 
-            if (LinePerceptron.check(x, y) != desired) {
-                fails++;
+                desired = x * m + n > y ? 1 : 0;
+
+                if (LinePerceptron.check(x, y) != desired) {
+                    fails++;
+                }
+                string= Double.toString(x) +" "+Double.toString(y)+" "+Double.toString(desired)+"\n";
+                writer.write (string);
             }
+
+            writer.close();
+        } catch(Exception e) {
+            e.printStackTrace();
         }
+
         System.out.println(fails);
 
     }
