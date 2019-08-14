@@ -4,7 +4,6 @@ def triada(line):
     xydesired = line.split(" ")
     for i in range(len(xydesired)):
         xydesired[i] = float(xydesired[i])
-    print(xydesired)
     return xydesired
 
 def plotLine(data):
@@ -13,7 +12,7 @@ def plotLine(data):
     bluex = []
     bluey = []
 
-    for line in lines:
+    for line in data:
         line = line.replace('\n',"")
         actual = triada(line)
         color = actual[2]
@@ -25,16 +24,14 @@ def plotLine(data):
             bluex.append(actual[0])
             bluey.append(actual[1])
 
-    plt.plot(redx,redy,'ro',bluex,bluey,'bo')
+    x1 = [0,1]
+    y1 = [0,3]
+
+    plt.plot(redx,redy,'ro',bluex,bluey,'bo',x1,y1)
     plt.axis([0,1,0,1])
     plt.show()
 
-File = open("../20190812_192722.txt",'r')
+File = open("./test.txt",'r')
 lines = File.readlines()
 plotLine(lines)
-
-input()
-        
-    
-
-    
+print("i ran")

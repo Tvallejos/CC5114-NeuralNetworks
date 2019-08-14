@@ -1,4 +1,5 @@
 
+import Perceptron.AbstractNeuron;
 import Perceptron.BasePerceptron;
 import Perceptron.LinePerceptron;
 
@@ -16,8 +17,8 @@ public class Training {
     }
 
     public static void main(String[] args) {
-        BasePerceptron LinePerceptron = new LinePerceptron(0);
-        int m = 1;
+        AbstractNeuron LinePerceptron = new LinePerceptron(0);
+        int m = 3;
         int n = 0;
         // line is x = y
         int numberOfTrainings = 1000;
@@ -48,7 +49,7 @@ public class Training {
             //x y desired
             String timeLog = new SimpleDateFormat("yyyyMMdd_HHmmss").format(
                     Calendar.getInstance().getTime());
-            File logFile=new File(timeLog+".txt");
+            File logFile=new File("test"+".txt");
 
             BufferedWriter writer = new BufferedWriter(new FileWriter(logFile));
             String string;
@@ -64,9 +65,13 @@ public class Training {
                 }
                 string= Double.toString(x) +" "+Double.toString(y)+" "+Double.toString(desired)+"\n";
                 writer.write (string);
+
             }
 
             writer.close();
+            Process p = Runtime.getRuntime().exec("python3 src/plotLine.py");
+            p.waitFor();
+
         } catch(Exception e) {
             e.printStackTrace();
         }
