@@ -6,6 +6,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
 
@@ -20,7 +21,7 @@ public class Training {
         int m = 1;
         int n = 0;
         // line is x = y
-        int numberOfTrainings = 1000;
+        int numberOfTrainings = 10000;
         int numberOfTests = 1000;
         int fails = 0;
 
@@ -30,17 +31,18 @@ public class Training {
         Random xTestGen = new Random(3);
         Random yTestGen = new Random(4);
 
-        double x, y;
         int desired;
-
+        ArrayList<Double> input = new ArrayList<>();
+        input.add(-1.0);
+        input.add(-1.0);
         for (int i = 0; i < numberOfTrainings; i++) {
-            x = xGen.nextDouble();
-            y = yGen.nextDouble();
+            input.set(0,xGen.nextDouble());
+            input.set(1,yGen.nextDouble());
 
-            desired = x * m + n > y ? 1 : 0;
+            desired = input.get(0) * m + n > input.get(1) ? 1 : 0;
 
-            if (LinePerceptron.check(x, y) != desired) {
-                LinePerceptron.learn(x, y, desired);
+            if (LinePerceptron.check(input) != desired) {
+                LinePerceptron.learn(input, desired);
             }
         }
         try {
@@ -53,16 +55,20 @@ public class Training {
             BufferedWriter writer = new BufferedWriter(new FileWriter(logFile));
             String string;
 
+            ArrayList<Double> inputTest = new ArrayList<>();
+            inputTest.add(-1.0);
+            inputTest.add(-1.0);
+
             for (int i = 0; i < numberOfTests; i++) {
-                x = xTestGen.nextDouble();
-                y = yTestGen.nextDouble();
+                inputTest.set(0,xTestGen.nextDouble());
+                inputTest.set(1,yTestGen.nextDouble());
 
-                desired = x * m + n > y ? 1 : 0;
+                desired = inputTest.get(0) * m + n > input.get(1) ? 1 : 0;
 
-                if (LinePerceptron.check(x, y) != desired) {
+                if (LinePerceptron.check(input) != desired) {
                     fails++;
                 }
-                string= Double.toString(x) +" "+Double.toString(y)+" "+Double.toString(desired)+"\n";
+                string= Double.toString(inputTest.get(0)) +" "+Double.toString(inputTest.get(1))+" "+Double.toString(desired)+"\n";
                 writer.write (string);
             }
 

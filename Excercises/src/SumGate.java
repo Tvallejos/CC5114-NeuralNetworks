@@ -2,6 +2,9 @@
 import Perceptron.BasePerceptron;
 import Perceptron.NandPerceptron;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class SumGate {
     BasePerceptron Nand;
 
@@ -23,19 +26,31 @@ public class SumGate {
         Nand = new NandPerceptron();
     }
 
-    public void sum(int x1, int x2) {
+    public ArrayList<Double> checkInt(Double x1, Double x2) {
+        ArrayList<Double> input1 = new ArrayList<>();
+        input1.add(x1);
+        input1.add(x2);
+        return input1;
+    }
+
+    public void sum(Double x1, Double x2) {
         isInputBinary(x1, x2);
         double ans1, ans2, ans3;
 
-        ans1 = Nand.check(x1, x2);
-        ans2 = Nand.check(x1, ans1);
-        ans3 = Nand.check(ans1, x2);
 
-        sum = Nand.check(ans2, ans3);
-        carry = Nand.check(ans1, ans1);
+        ans1 = Nand.check(checkInt(x1, x2));
+        ans2 = Nand.check(checkInt(x1, ans1));
+        ans3 = Nand.check(checkInt(ans1, x2));
+
+        ArrayList<Double> input4 = new ArrayList<>();
+        input4.add(ans2);
+        input4.add(ans3);
+
+        sum = Nand.check(checkInt(ans2, ans3));
+        carry = Nand.check(checkInt(ans1, ans1));
     }
 
-    private void isInputBinary(int x1, int x2) {
+    private void isInputBinary(Double x1, Double x2) {
         assert (x1 == 0 || x1 == 1);
         assert (x2 == 0 || x2 == 1);
     }

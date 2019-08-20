@@ -15,7 +15,7 @@ public class SumGateTest {
 
     @Test
     public void ZeroOne() {
-        sumGate.sum(0,1);
+        sumGate.sum(0.0,1.0);
 
         assertEquals(1,sumGate.getSum(),delta );
         assertEquals(0,sumGate.getCarry(),delta);
@@ -23,7 +23,7 @@ public class SumGateTest {
 
     @Test
     public void OneZero() {
-        sumGate.sum(1,0);
+        sumGate.sum(1.0,0.0);
 
         assertEquals(1,sumGate.getSum() ,delta);
         assertEquals(0,sumGate.getCarry(),delta);
@@ -31,7 +31,7 @@ public class SumGateTest {
 
     @Test
     public void OneOne() {
-        sumGate.sum(1,1);
+        sumGate.sum(1.0,1.0);
 
         assertEquals(0,sumGate.getSum() ,delta);
         assertEquals(1,sumGate.getCarry(),delta);
@@ -39,7 +39,7 @@ public class SumGateTest {
 
     @Test
     public void ZeroZero() {
-        sumGate.sum(0,0);
+        sumGate.sum(0.0,0.0);
 
         assertEquals(0,sumGate.getSum(),delta );
         assertEquals(0,sumGate.getCarry(),delta);
@@ -47,7 +47,7 @@ public class SumGateTest {
 
     @Test(expected = AssertionError.class)
     public void TwoTwo(){
-        sumGate.sum(2,2);
+        sumGate.sum(2.0,2.0);
         //boolean pass = false;
         //try {sumGate.sum(2,2);} catch (AssertionError e){
         //    pass = true;

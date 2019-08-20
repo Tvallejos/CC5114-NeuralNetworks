@@ -5,16 +5,14 @@ import java.util.Random;
 /**
  * Class which represents a perceptron that will be trained
  * to determine a line
- *
+ * <p>
  * initialized with random weights and bias values
  */
 public class LinePerceptron extends BasePerceptron {
     public LinePerceptron(int seed) {
-        super(0, 0, 0);
-        int low = -2;
-        int high = 2;
+        super(2,2);
         Random r = new Random(seed);
-        randomWeights(r, high, low);
+        randomWeights(r);
     }
 
     public LinePerceptron() {
@@ -23,9 +21,11 @@ public class LinePerceptron extends BasePerceptron {
     }
 
 
-    private void randomWeights(Random r, int high, int low) {
-        this.w1 = r.nextInt(high - low) + low;
-        this.w2 = r.nextInt(high - low) + low;
-        this.b = r.nextInt(high - low) + low;
+    private void randomWeights(Random r) {
+        for (int i = 0; i < size; i++) {
+            Double randomNumber = r.nextDouble();
+            W.add(i, randomNumber);
+        }
+        this.b = r.nextDouble();
     }
 }

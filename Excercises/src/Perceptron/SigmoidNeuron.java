@@ -1,21 +1,18 @@
 package Perceptron;
 
+import java.util.ArrayList;
+
 public class SigmoidNeuron extends AbstractNeuron {
 
 
-    public SigmoidNeuron(int w1, int w2, int b) {
-        super(w1, w2, b);
+    public SigmoidNeuron(ArrayList<Double> W, int b) {
+        super(W, b);
     }
 
     @Override
-    public double check(double x1, double x2) {
-        double weightedSum = x1 * w1 + x2 * w2;
-        double z = Math.exp(-(weightedSum + b));
+    public double check(ArrayList<Double> X) {
+        double z = Math.exp(-(weightedSum(X) + b));
         return z;
     }
 
-    @Override
-    public void learn(double x1, double x2, int desiredOutput) {
-        super.learn(x1,x2,desiredOutput);
-    }
 }

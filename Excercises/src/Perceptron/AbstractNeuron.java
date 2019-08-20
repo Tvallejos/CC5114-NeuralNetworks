@@ -1,27 +1,62 @@
 package Perceptron;
 
-public abstract class AbstractNeuron implements Perceptron{
-    protected double w1;
-    protected double w2;
+import java.util.ArrayList;
+
+public abstract class AbstractNeuron implements Perceptron {
+    protected ArrayList<Double> W;
     protected double b;
     private double lr;
+    protected int size;
 
-    public AbstractNeuron(int w1,int w2,int b){
-
-        this.w1 = w1;
-        this.w2 = w2;
+    public AbstractNeuron(int wNum, double b) {
+        W = new ArrayList<>();
+        size = wNum;
         this.b = b;
         this.lr = 0.1;
     }
 
+    public AbstractNeuron(ArrayList<Double> W, double b) {
+        this(W.size(), b);
+        for (int i = 0; i < size; i++) {
+            this.W.set(i, W.get(i));
+        }
+    }
+
     @Override
-    public void learn(double x1, double x2, int desiredOutput) {
-        double realOutput = check(x1, x2);
+    public void learn(ArrayList<Double> X, int desiredOutput) {
+        double realOutput = check(X);
         double diff = desiredOutput - realOutput;
-
-        this.w1 += lr * x1 * diff;
-        this.w2 += lr * x2 * diff;
-
+        int Xsize = X.size();
+        assert (Xsize == size);
+        for (int i = 0; i < size; i++) {
+            W.set(i, W.get(i) + lr * X.get(i) * diff);
+        }
         b += lr * diff;
     }
+
+    public double weightedSum(ArrayList<Double> X) {
+        double sum = 0;
+        for (int i = 0; i < size; i++) {
+            sum += X.get(i) * W.get(i);
+        }
+        return sum;
+    }
+
+    /*public ArrayList<Double> normalize(ArrayList<Integer> X, int dl, int dh, Double nh, Double nl) {
+        int Xsize = X.size();
+        ArrayList<Double> normalizedInput = new ArrayList<>();
+        for (int i = 0; i < Xsize; i++) {
+            int actualX = X.get(i);
+            Double normalizedValue =
+                    ((actualX - dl) * (nh - nl) /
+                            (dh - dl)) + nl;
+            normalizedInput.add(normalizedValue);
+        }
+        return normalizedInput;
+    }
+
+    public ArrayList<Integer> deNormalize(ArrayList<Double> X, int dl, int dh, Double nh, Double nl) {
+
+    }
+    */
 }
