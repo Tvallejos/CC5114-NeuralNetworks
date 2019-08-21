@@ -1,6 +1,7 @@
 
 import Perceptron.AbstractNeuron;
 import Perceptron.LinePerceptron;
+import Perceptron.SigmoidNeuron;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -17,11 +18,11 @@ public class Training {
     }
 
     public static void main(String[] args) {
-        AbstractNeuron LinePerceptron = new LinePerceptron(0);
-        int m = 3;
+        AbstractNeuron LinePerceptron = new SigmoidNeuron(2,2);
+        int m = 1;
         int n = 0;
         // line is x = y
-        int numberOfTrainings = 10000;
+        int numberOfTrainings = 50000;
         int numberOfTests = 1000;
         int fails = 0;
 
@@ -74,7 +75,7 @@ public class Training {
             }
 
             writer.close();
-            Process p = Runtime.getRuntime().exec("python3 src/plotLine.py");
+            Process p = Runtime.getRuntime().exec("python src/plotLine.py");
             p.waitFor();
 
         } catch(Exception e) {
