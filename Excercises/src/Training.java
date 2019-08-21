@@ -1,6 +1,5 @@
 
 import Perceptron.AbstractNeuron;
-import Perceptron.BasePerceptron;
 import Perceptron.LinePerceptron;
 
 import java.io.BufferedWriter;
@@ -42,7 +41,7 @@ public class Training {
 
             desired = input.get(0) * m + n > input.get(1) ? 1 : 0;
 
-            if (LinePerceptron.check(input) != desired) {
+            if (LinePerceptron.feed(input) != desired) {
                 LinePerceptron.learn(input, desired);
             }
         }
@@ -66,7 +65,7 @@ public class Training {
 
                 desired = inputTest.get(0) * m + n > input.get(1) ? 1 : 0;
 
-                if (LinePerceptron.check(input) != desired) {
+                if (LinePerceptron.feed(input) != desired) {
                     fails++;
                 }
                 string= Double.toString(inputTest.get(0)) +" "+Double.toString(inputTest.get(1))+" "+Double.toString(desired)+"\n";

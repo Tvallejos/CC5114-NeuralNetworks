@@ -2,7 +2,6 @@
 import Perceptron.BasePerceptron;
 import Perceptron.NandPerceptron;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class SumGate {
@@ -38,16 +37,16 @@ public class SumGate {
         double ans1, ans2, ans3;
 
 
-        ans1 = Nand.check(checkInt(x1, x2));
-        ans2 = Nand.check(checkInt(x1, ans1));
-        ans3 = Nand.check(checkInt(ans1, x2));
+        ans1 = Nand.feed(checkInt(x1, x2));
+        ans2 = Nand.feed(checkInt(x1, ans1));
+        ans3 = Nand.feed(checkInt(ans1, x2));
 
         ArrayList<Double> input4 = new ArrayList<>();
         input4.add(ans2);
         input4.add(ans3);
 
-        sum = Nand.check(checkInt(ans2, ans3));
-        carry = Nand.check(checkInt(ans1, ans1));
+        sum = Nand.feed(checkInt(ans2, ans3));
+        carry = Nand.feed(checkInt(ans1, ans1));
     }
 
     private void isInputBinary(Double x1, Double x2) {

@@ -27,22 +27,22 @@ public class AndPerceptronTest {
 
         @Test
         public void ZeroOne(){
-            assertEquals(0,and.check(arrayListWith(0.0,1.0)),delta);
+            assertEquals(0,and.feed(arrayListWith(0.0,1.0)),delta);
         }
 
         @Test
         public void OneZero(){
-            assertEquals(0,and.check(arrayListWith(1.0,0.0)),delta);
+            assertEquals(0,and.feed(arrayListWith(1.0,0.0)),delta);
         }
 
         @Test
         public void OneOne(){
-            assertEquals(1,and.check(arrayListWith(1.0,1.0)),delta);
+            assertEquals(1,and.feed(arrayListWith(1.0,1.0)),delta);
         }
 
         @Test
         public void ZeroZero(){
-            assertEquals(0,and.check(arrayListWith(0.0,0.0)),delta);
+            assertEquals(0,and.feed(arrayListWith(0.0,0.0)),delta);
         }
 
 

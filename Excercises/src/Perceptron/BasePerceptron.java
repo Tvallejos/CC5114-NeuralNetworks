@@ -1,5 +1,7 @@
 package Perceptron;
 
+import Perceptron.ActivationFunction.Step;
+
 import java.util.ArrayList;
 
 /**
@@ -11,21 +13,19 @@ public class BasePerceptron extends AbstractNeuron {
 
     BasePerceptron(ArrayList<Double> W, double b) {
         super(W,b);
+        this.f = new Step();
     }
 
     BasePerceptron(int w,double b){
         super(w,b);
+        this.f = new Step();
     }
 
     @Override
-    public double check(ArrayList<Double> X) {
+    public double feed(ArrayList<Double> X) {
         // if weighted sum + b <= 0 -> false
-        if (weightedSum(X) + b <= 0) {
-            return 0;
-        } else {
-            return 1;
-        }
-
+        double x = weightedSum(X) + b;
+        return f.apply(x);
     }
     public ArrayList<Double> getW(){
         return W;

@@ -27,22 +27,22 @@ public class NandPerceptronTest {
 
     @Test
     public void ZeroOne() {
-        assertEquals(1, nand.check(arrayListWith(0.0, 1.0)), delta);
+        assertEquals(1, nand.feed(arrayListWith(0.0, 1.0)), delta);
     }
 
     @Test
     public void OneZero() {
-        assertEquals(1, nand.check(arrayListWith(1.0, 0.0)), delta);
+        assertEquals(1, nand.feed(arrayListWith(1.0, 0.0)), delta);
     }
 
     @Test
     public void OneOne() {
-        assertEquals(0, nand.check(arrayListWith(1.0, 1.0)), delta);
+        assertEquals(0, nand.feed(arrayListWith(1.0, 1.0)), delta);
     }
 
     @Test
     public void ZeroZero() {
-        assertEquals(1, nand.check(arrayListWith(0.0, 0.0)), delta);
+        assertEquals(1, nand.feed(arrayListWith(0.0, 0.0)), delta);
     }
 
 

@@ -26,22 +26,22 @@ public class OrPerceptronTest {
     @Test
     public void ZeroOne(){
 
-        assertEquals(1,or.check(arrayListWith(0.0,1.0)),delta);
+        assertEquals(1,or.feed(arrayListWith(0.0,1.0)),delta);
     }
 
     @Test
     public void OneZero(){
-        assertEquals(1,or.check(arrayListWith(1.0,0.0)),delta);
+        assertEquals(1,or.feed(arrayListWith(1.0,0.0)),delta);
     }
 
     @Test
     public void OneOne(){
-        assertEquals(1,or.check(arrayListWith(1.0,1.0)),delta);
+        assertEquals(1,or.feed(arrayListWith(1.0,1.0)),delta);
     }
 
     @Test
     public void ZeroZero(){
-        assertEquals(0,or.check(arrayListWith(0.0,0.0)),delta);
+        assertEquals(0,or.feed(arrayListWith(0.0,0.0)),delta);
     }
 
 

@@ -12,7 +12,7 @@ public interface Perceptron {
      * @param X Array of inputs
      * @return Rosenblatt computed output
      */
-    double check(ArrayList<Double> X);
+    double feed(ArrayList<Double> X);
 
     /**
      * Supervised learning algorithm, if the real output is different from the

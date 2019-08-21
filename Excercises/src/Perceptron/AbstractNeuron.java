@@ -1,5 +1,7 @@
 package Perceptron;
 
+import Perceptron.ActivationFunction.ActivationFunction;
+
 import java.util.ArrayList;
 
 public abstract class AbstractNeuron implements Perceptron {
@@ -7,6 +9,7 @@ public abstract class AbstractNeuron implements Perceptron {
     protected double b;
     private double lr;
     protected int size;
+    protected ActivationFunction f;
 
     public AbstractNeuron(int wNum, double b) {
         W = new ArrayList<>();
@@ -24,7 +27,7 @@ public abstract class AbstractNeuron implements Perceptron {
 
     @Override
     public void learn(ArrayList<Double> X, int desiredOutput) {
-        double realOutput = check(X);
+        double realOutput = feed(X);
         double diff = desiredOutput - realOutput;
         int Xsize = X.size();
         assert (Xsize == size);
