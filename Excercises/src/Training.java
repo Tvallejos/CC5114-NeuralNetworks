@@ -1,6 +1,7 @@
 
 import Perceptron.AbstractNeuron;
 import Perceptron.LinePerceptron;
+import Perceptron.Perceptron;
 import Perceptron.SigmoidNeuron;
 
 import java.io.BufferedWriter;
@@ -18,32 +19,52 @@ public class Training {
     }
 
     public static void main(String[] args) {
-        AbstractNeuron LinePerceptron = new SigmoidNeuron(2,2);
+        Perceptron LinePerceptron = new LinePerceptron(0);
         int m = 1;
         int n = 0;
         // line is x = y
-        int numberOfTrainings = 50000;
-        int numberOfTests = 1000;
+        int numberOfTrainings = 1000;
+        int epoch = 1;
+        int numberOfTests = 100;
+
         int fails = 0;
-
-        Random xGen = new Random(1);
-        Random yGen = new Random(2);
-
-        Random xTestGen = new Random(3);
-        Random yTestGen = new Random(4);
-
+        Random xGen = new Random(0);
+        Random yGen = new Random(1);
+        Random xTestGen = new Random(2);
+        Random yTestGen = new Random(3);
         int desired;
-        ArrayList<Double> input = new ArrayList<>();
-        input.add(-1.0);
-        input.add(-1.0);
-        for (int i = 0; i < numberOfTrainings; i++) {
-            input.set(0,xGen.nextDouble());
-            input.set(1,yGen.nextDouble());
+        ArrayList<Double> inputX = new ArrayList<>();
+        ArrayList<Double> inputY = new ArrayList<>();
+        ArrayList<Double> inputTestX = new ArrayList<>();
+        ArrayList<Double> inputTestY = new ArrayList<>();
 
-            desired = input.get(0) * m + n > input.get(1) ? 1 : 0;
+        ArrayList<Double> actualInput = new ArrayList<>();
+        actualInput.add(-1.0);
+        actualInput.add(-1.0);
+        //input generation and test generation
+        for (int number = 0; number < numberOfTrainings; number++) {
+            inputX.add(xGen.nextDouble());
+            inputY.add(yGen.nextDouble());
+        }
+        for (int number = 0; number < numberOfTests; number++) {
+            inputTestX.add(xGen.nextDouble());
+            inputTestY.add(yGen.nextDouble());
+        }
 
-            if (LinePerceptron.feed(input) != desired) {
-                LinePerceptron.learn(input, desired);
+
+        for (int j = 0; j < epoch; j++) {
+
+
+            for (int i = 0; i < numberOfTrainings; i++) {
+
+
+                desired = inputX.get(i) * m + n > inputY.get(i) ? 1 : 0;
+
+                actualInput.set(0, inputX.get(i));
+                actualInput.set(1, inputY.get(i));
+
+                LinePerceptron.learn(actualInput, desired);
+
             }
         }
         try {
@@ -51,26 +72,22 @@ public class Training {
             //x y desired
             String timeLog = new SimpleDateFormat("yyyyMMdd_HHmmss").format(
                     Calendar.getInstance().getTime());
-            File logFile=new File("test"+".txt");
+            File logFile = new File("test" + ".txt");
 
             BufferedWriter writer = new BufferedWriter(new FileWriter(logFile));
             String string;
 
-            ArrayList<Double> inputTest = new ArrayList<>();
-            inputTest.add(-1.0);
-            inputTest.add(-1.0);
-
             for (int i = 0; i < numberOfTests; i++) {
-                inputTest.set(0,xTestGen.nextDouble());
-                inputTest.set(1,yTestGen.nextDouble());
+                desired = inputTestX.get(i) * m + n > inputTestY.get(i) ? 1 : 0;
 
-                desired = inputTest.get(0) * m + n > input.get(1) ? 1 : 0;
+                actualInput.set(0, inputTestX.get(i));
+                actualInput.set(1, inputTestY.get(i));
 
-                if (LinePerceptron.feed(input) != desired) {
+                if (LinePerceptron.feed(actualInput) != desired) {
                     fails++;
                 }
-                string= Double.toString(inputTest.get(0)) +" "+Double.toString(inputTest.get(1))+" "+Double.toString(desired)+"\n";
-                writer.write (string);
+                string = Double.toString(inputTestX.get(i)) + " " + Double.toString(inputTestY.get(i)) + " " + Double.toString(LinePerceptron.feed(actualInput)) + "\n";
+                writer.write(string);
 
             }
 
@@ -78,11 +95,10 @@ public class Training {
             Process p = Runtime.getRuntime().exec("python src/plotLine.py");
             p.waitFor();
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         System.out.println(fails);
-
     }
 }

@@ -1,5 +1,6 @@
 package Perceptron;
 
+import Perceptron.ActivationFunction.Sigmoid;
 import Perceptron.ActivationFunction.Step;
 
 import java.util.ArrayList;
