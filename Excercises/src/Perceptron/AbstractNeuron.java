@@ -3,6 +3,7 @@ package Perceptron;
 import Perceptron.ActivationFunction.ActivationFunction;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public abstract class AbstractNeuron implements Perceptron {
     protected ArrayList<Double> W;
@@ -27,10 +28,9 @@ public abstract class AbstractNeuron implements Perceptron {
 
     @Override
     public void learn(ArrayList<Double> X, int desiredOutput) {
+        assert (X.size() == size);
         double realOutput = feed(X);
         double diff = desiredOutput - realOutput;
-        int Xsize = X.size();
-        assert (Xsize == size);
         for (int i = 0; i < size; i++) {
             W.set(i, W.get(i) + lr * X.get(i) * diff);
         }
@@ -43,6 +43,13 @@ public abstract class AbstractNeuron implements Perceptron {
             sum += X.get(i) * W.get(i);
         }
         return sum;
+    }
+    protected void randomWeights(Random r) {
+        for (int i = 0; i < size; i++) {
+            Double randomNumber = r.nextDouble();
+            W.add(i, randomNumber);
+        }
+        this.b = r.nextDouble();
     }
 
     /*public ArrayList<Double> normalize(ArrayList<Integer> X, int dl, int dh, Double nh, Double nl) {

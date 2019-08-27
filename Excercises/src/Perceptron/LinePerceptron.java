@@ -20,12 +20,4 @@ public class LinePerceptron extends BasePerceptron {
 
     }
 
-
-    private void randomWeights(Random r) {
-        for (int i = 0; i < size; i++) {
-            Double randomNumber = r.nextDouble();
-            W.add(i, randomNumber);
-        }
-        this.b = r.nextDouble();
-    }
 }

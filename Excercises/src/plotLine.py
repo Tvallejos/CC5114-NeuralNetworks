@@ -27,7 +27,7 @@ def plotLine(data):
             bluey.append(actual[1])
 
     x1 = [0,1]
-    y1 = [0,3]
+    y1 = [0,1]
 
     plt.plot(redx,redy,'ro',bluex,bluey,'bo',x1,y1)
     plt.axis([0,1,0,1])

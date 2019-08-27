@@ -12,8 +12,8 @@ public class Step implements ActivationFunction{
 
     @Override
     public double apply(Double x) {
-        if(x<0) return 0;
-        else return 1;
+        if(x<0){ return 0;
+        }else{ return 1;}
     }
 
     @Override
