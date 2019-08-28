@@ -5,12 +5,14 @@ import Perceptron.ActivationFunction.ActivationFunction;
 import java.util.ArrayList;
 import java.util.Random;
 
-public abstract class AbstractNeuron implements Perceptron {
+public abstract class AbstractNeuron implements INeuron {
     protected ArrayList<Double> W;
     protected double b;
     private double lr;
     protected int size;
     protected ActivationFunction f;
+    protected double outPut;
+    protected double delta;
 
     public AbstractNeuron(int wNum, double b) {
         W = new ArrayList<>();
@@ -37,6 +39,7 @@ public abstract class AbstractNeuron implements Perceptron {
         b += lr * diff;
     }
 
+    // TODO change firm to AL double X, AL double Y
     public double weightedSum(ArrayList<Double> X) {
         double sum = 0;
         for (int i = 0; i < size; i++) {

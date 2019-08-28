@@ -1,8 +1,6 @@
 
-import Perceptron.AbstractNeuron;
 import Perceptron.LinePerceptron;
-import Perceptron.Perceptron;
-import Perceptron.SigmoidNeuron;
+import Perceptron.INeuron;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -19,7 +17,7 @@ public class Training {
     }
 
     public static void main(String[] args) {
-        Perceptron LinePerceptron = new LinePerceptron(0);
+        INeuron LinePerceptron = new LinePerceptron(0);
         int m = 1;
         int n = 0;
         // line is x = y

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Class to represent a perceptron
  */
-public interface Perceptron {
+public interface INeuron {
     /**
      * This method checks the output of the perceptron by the given input
      *
