@@ -22,13 +22,4 @@ public class SigmoidNeuron extends AbstractNeuron {
         this.f = new Sigmoid();
     }
 
-    @Override
-    public double feed(ArrayList<Double> X) {
-        double x = weightedSum(X) + b;
-        if(f.apply(x)<0.5){
-            return 0;
-        }else
-            return 1;
-    }
-
 }

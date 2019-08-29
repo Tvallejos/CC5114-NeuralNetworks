@@ -29,6 +29,12 @@ public abstract class AbstractNeuron implements INeuron {
     }
 
     @Override
+    public double feed(ArrayList<Double> X) {
+        double x = weightedSum(X) + b;
+        return f.apply(x);
+    }
+
+    @Override
     public void learn(ArrayList<Double> X, int desiredOutput) {
         assert (X.size() == size);
         double realOutput = feed(X);
@@ -40,6 +46,7 @@ public abstract class AbstractNeuron implements INeuron {
     }
 
     // TODO change firm to AL double X, AL double Y
+    @Override
     public double weightedSum(ArrayList<Double> X) {
         double sum = 0;
         for (int i = 0; i < size; i++) {
@@ -47,6 +54,7 @@ public abstract class AbstractNeuron implements INeuron {
         }
         return sum;
     }
+
     protected void randomWeights(Random r) {
         for (int i = 0; i < size; i++) {
             Double randomNumber = r.nextDouble();

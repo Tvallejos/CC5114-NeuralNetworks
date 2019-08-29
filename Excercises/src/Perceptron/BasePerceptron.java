@@ -22,12 +22,6 @@ public class BasePerceptron extends AbstractNeuron {
         this.f = new Step();
     }
 
-    @Override
-    public double feed(ArrayList<Double> X) {
-        // if weighted sum + b <= 0 -> false
-        double x = weightedSum(X) + b;
-        return f.apply(x);
-    }
     public ArrayList<Double> getW(){
         return W;
     }

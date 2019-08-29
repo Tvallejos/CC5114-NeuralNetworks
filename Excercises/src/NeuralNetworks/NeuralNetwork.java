@@ -7,49 +7,62 @@ import java.util.ArrayList;
 public class NeuralNetwork implements INeuralNetwork {
     private ArrayList<ILayer> layers;
 
-    public NeuralNetwork(int numberOfLayers, ArrayList<Integer> numberOfNeuronsPerLayer){
-        addLayers(numberOfLayers,numberOfNeuronsPerLayer);
+    //jp dijo k lo hiciera como fuera mas facil j3j3
+    //ultimo parametro no se usa pk se puede deducir
+    //de la cantidad de neuronas de la ultima layer
+    public NeuralNetwork(int numberOfLayers, ArrayList<Integer> numberOfNeuronsPerLayer, int numberOfInputs, int numberOfOutputs) {
+        addLayers(numberOfLayers, numberOfNeuronsPerLayer, numberOfInputs);
+        connectLayers();
     }
 
-
-    @Override
-    public void addLayers(int numberOfLayers, ArrayList<Integer> numberOfNeuronsPerLayer) {
-        assert(numberOfLayers == numberOfNeuronsPerLayer.size());
-        addFirstLayer(numberOfLayers,numberOfNeuronsPerLayer);
-        for(int i = 1; i<numberOfLayers-1;i++){
-            addLayer(numberOfNeuronsPerLayer.get(i));
-        }
-        addLastLayer(numberOfNeuronsPerLayer.get(numberOfLayers-1));
-    }
-
-    private void addLastLayer(int numberOfNeurons) {
-        layers.add(new LastLayer(numberOfNeurons,getLastLayer()));
-
-    }
-
-    private void addFirstLayer(int numberOfLayers, ArrayList<Integer> numberOfNeuronsPerLayer) {
-        if(numberOfLayers>0){
-            layers.add(new FirstLayer(numberOfNeuronsPerLayer.get(0)));
+    private void connectLayers() {
+        int size = layers.size();
+        for (int i = 1; i < size - 1; i++) {
+            layers.get(i).setPreviousLayer(layers.get(i - 1));
+            layers.get(i).setNextLayer(layers.get(i + 1));
         }
     }
 
+    private void addLayers(int numberOfLayers, ArrayList<Integer> numberOfNeuronsPerLayer, int numberOfInputs) {
+        assert (numberOfLayers == numberOfNeuronsPerLayer.size());
+        assert (numberOfLayers > 1);// number of layers must be 2 or more
+
+        addFirstLayer(numberOfNeuronsPerLayer.get(0), numberOfInputs);
+        for (int i = 1; i < numberOfLayers - 1; i++) {
+            addLayer(numberOfNeuronsPerLayer.get(i), numberOfNeuronsPerLayer.get(i - 1));
+        }
+        addLastLayer(numberOfNeuronsPerLayer.get(numberOfLayers - 1), numberOfNeuronsPerLayer.get(numberOfLayers - 1));
+
+    }
+
+
+    private void addLastLayer(int numberOfNeurons, int numberOfInputs) {
+        layers.add(new LastLayer(numberOfNeurons, numberOfInputs));
+
+    }
+
+    private void addFirstLayer(int numberOfNeurons, int numberOfInputs) {
+        layers.add(new FirstLayer(numberOfNeurons, numberOfInputs));
+
+    }
+
+
+    private void addLayer(int numberOfNeurons, int numberOfInputs) {
+        layers.add(new HiddenLayer(numberOfNeurons, numberOfInputs));
+    }
+
     @Override
-    public void addLayer(int numberOfNeurons) {
-        ILayer previousLayer = getLastLayer();
-        layers.add(new HiddenLayer(numberOfNeurons,previousLayer));
+    public ArrayList<Double> feed(ArrayList<Double> X) {
+        return layers.get(0).feed(X);
+    }
+
+    @Override
+    public void learn(ArrayList<Double> X, double desiredOutput) {
+        ;
     }
 
     private ILayer getLastLayer() {
-        return layers.get(layers.size()-1);
+        return layers.get(layers.size() - 1);
     }
 
-    @Override
-    public double feed(ArrayList<Double> X) {
-        return 0;
-    }
-
-    @Override
-    public double learn(ArrayList<Double> X, double desiredOutput) {
-        return 0;
-    }
 }
