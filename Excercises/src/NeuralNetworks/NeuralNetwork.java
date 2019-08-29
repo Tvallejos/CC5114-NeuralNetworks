@@ -11,6 +11,7 @@ public class NeuralNetwork implements INeuralNetwork {
     //ultimo parametro no se usa pk se puede deducir
     //de la cantidad de neuronas de la ultima layer
     public NeuralNetwork(int numberOfLayers, ArrayList<Integer> numberOfNeuronsPerLayer, int numberOfInputs, int numberOfOutputs) {
+        layers = new ArrayList<>();
         addLayers(numberOfLayers, numberOfNeuronsPerLayer, numberOfInputs);
         connectLayers();
     }
