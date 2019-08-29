@@ -25,6 +25,12 @@ public interface INeuron {
 
     double weightedSum(ArrayList<Double> X);
 
+    void updateError(double aError);
+    double getOutput();
+    ArrayList<Double> getWeights();
+    double getDelta();
+    int getNumberOfInputs();
+
     // normalizacion va a nivel de red
     //ArrayList<Double> normalize(ArrayList<Integer> X, int dl, int dh, Double nh, Double nl);
     //ArrayList<Integer> deNormalize(ArrayList<Double> X, int dl, int dh, Double nh, Double nl);

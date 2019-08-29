@@ -15,6 +15,11 @@ public interface ILayer {
 
     int getNumberOfNeurons();
 
+    void updateError(double desiredOutput);
+
+    ArrayList<ArrayList<Double>> getListOfNeuronWeights();
+
+    ArrayList<Double> getListOfNeuronDeltas();
     // TODO learn
     //double learn(ArrayList<Double> X,double desiredOutput);
 }

@@ -11,7 +11,8 @@ public abstract class AbstractNeuron implements INeuron {
     private double lr;
     protected int size;
     protected ActivationFunction f;
-    protected double outPut;
+    protected double output;
+    protected double error;
     protected double delta;
 
     public AbstractNeuron(int wNum, double b) {
@@ -31,7 +32,8 @@ public abstract class AbstractNeuron implements INeuron {
     @Override
     public double feed(ArrayList<Double> X) {
         double x = weightedSum(X) + b;
-        return f.apply(x);
+        output = f.apply(x);
+        return output;
     }
 
     @Override
@@ -61,6 +63,36 @@ public abstract class AbstractNeuron implements INeuron {
             W.add(i, randomNumber);
         }
         this.b = r.nextDouble();
+    }
+
+    @Override
+    public void updateError(double aError) {
+        error = aError;
+        updateDelta();
+    }
+
+    protected void updateDelta() {
+        delta = error * (output - (1.0 - output));
+    }
+
+    @Override
+    public double getOutput() {
+        return output;
+    }
+
+    @Override
+    public ArrayList<Double> getWeights() {
+        return W;
+    }
+
+    @Override
+    public double getDelta() {
+        return delta;
+    }
+
+    @Override
+    public int getNumberOfInputs() {
+        return W.size();
     }
 
     /*public ArrayList<Double> normalize(ArrayList<Integer> X, int dl, int dh, Double nh, Double nl) {

@@ -1,5 +1,7 @@
 package Layer;
 
+import Perceptron.INeuron;
+
 import java.util.ArrayList;
 
 public class LastLayer extends AbstractLayer {
@@ -12,5 +14,13 @@ public class LastLayer extends AbstractLayer {
     public ArrayList<Double> feed(ArrayList<Double> inputs) {
         ArrayList<Double> Outputs = feedNeurons(inputs);
         return feedNeurons(Outputs);
+    }
+
+    @Override
+    public void updateError(double desiredOutput) {
+        for (INeuron neuron : neurons) {
+            neuron.updateError(desiredOutput - neuron.getOutput());
+        }
+
     }
 }

@@ -5,7 +5,7 @@ import Perceptron.*;
 import java.util.ArrayList;
 
 public abstract class AbstractLayer implements ILayer {
-    private ArrayList<INeuron> neurons;
+    protected ArrayList<INeuron> neurons;
     protected ILayer nextLayer;
     protected ILayer previousLayer;
 
@@ -53,5 +53,50 @@ public abstract class AbstractLayer implements ILayer {
         return nextLayer.feed(Outputs);
     }
 
+    @Override
+    public ArrayList<ArrayList<Double>> getListOfNeuronWeights() {
+        ArrayList<ArrayList<Double>> listOfNeuronWeights = new ArrayList<>();
+        for (INeuron neuron : neurons) {
+            listOfNeuronWeights.add(neuron.getWeights());
+        }
+        return listOfNeuronWeights;
+    }
 
+    @Override
+    public ArrayList<Double> getListOfNeuronDeltas() {
+        ArrayList<Double> listOfNeuronDeltas = new ArrayList<>();
+        for (int i = 0; i < neurons.get(0).getNumberOfInputs(); i++) {
+            listOfNeuronDeltas.add(neurons.get(i).getDelta());
+        }
+        return listOfNeuronDeltas;
+    }
+
+    @Override
+    public void updateError(double desiredOutput) {
+        ArrayList<ArrayList<Double>> weights = nextLayer.getListOfNeuronWeights();
+        ArrayList<Double> deltas = nextLayer.getListOfNeuronDeltas();
+        int numOfNeurons = getNumberOfNeurons();
+        for (int i = 0; i< numOfNeurons; i++) {
+            Double newError = Sum(Multiply(weights.get(i),deltas.get(i)));
+            neurons.get(i).updateError(newError);
+        }
+    }
+
+    private Double Sum(ArrayList<Double> X) {
+        Double sum = 0.0;
+        int size = X.size();
+        for (int i = 0; i < size; i++) {
+            sum += X.get(i);
+        }
+        return sum;
+    }
+
+    private ArrayList<Double> Multiply(ArrayList<Double> X, double k) {
+        ArrayList<Double> ans = new ArrayList<>();
+        int size = X.size();
+        for (int i = 0; i < size; i++) {
+            ans.add(X.get(i) * k);
+        }
+        return ans;
+    }
 }

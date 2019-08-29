@@ -54,12 +54,17 @@ public class NeuralNetwork implements INeuralNetwork {
 
     @Override
     public ArrayList<Double> feed(ArrayList<Double> X) {
-        return layers.get(0).feed(X);
+        return getFirstLayer().feed(X);
+    }
+
+    public ILayer getFirstLayer(){
+        return layers.get(0);
     }
 
     @Override
     public void learn(ArrayList<Double> X, double desiredOutput) {
-        ;
+        getFirstLayer().feed(X);
+        getLastLayer().updateError(desiredOutput);
     }
 
     private ILayer getLastLayer() {
