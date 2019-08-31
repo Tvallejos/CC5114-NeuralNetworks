@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 public class NeuralNetwork implements INeuralNetwork {
     private ArrayList<ILayer> layers;
+    private int nTries;
+    private int MSE;
 
     //jp dijo k lo hiciera como fuera mas facil j3j3
     //ultimo parametro no se usa pk se puede deducir
@@ -14,6 +16,8 @@ public class NeuralNetwork implements INeuralNetwork {
         layers = new ArrayList<>();
         addLayers(numberOfLayers, numberOfNeuronsPerLayer, numberOfInputs);
         connectLayers();
+        nTries = 0;
+        MSE = 0;
     }
 
     private void connectLayers() {
@@ -57,15 +61,33 @@ public class NeuralNetwork implements INeuralNetwork {
         return getFirstLayer().feed(X);
     }
 
-    public ILayer getFirstLayer(){
+    public ILayer getFirstLayer() {
         return layers.get(0);
     }
 
     @Override
-    public void learn(ArrayList<Double> X, double desiredOutput) {
-        getFirstLayer().feed(X);
+    public void learn(ArrayList<Double> X, ArrayList<Double> desiredOutput) {
+        ArrayList<Double> RealOutput = getFirstLayer().feed(X);
         getLastLayer().updateError(desiredOutput);
         getFirstLayer().updateWeightsAndBias(X);
+        nTries++;
+        double diffSqured = calculateDiffSquared(RealOutput, desiredOutput);
+        MSE += diffSqured;
+    }
+
+    private double calculateDiffSquared(ArrayList<Double> realOutput, ArrayList<Double> desiredOutput) {
+        int size = realOutput.size();
+        Double AcumulatedError = 0.0;
+        for (int i = 0; i < size; i++) {
+            Double diff = realOutput.get(i) - desiredOutput.get(i);
+            AcumulatedError += diff * diff;
+        }
+        return AcumulatedError;
+    }
+
+    @Override
+    public double getLoss() {
+        return MSE / nTries;
     }
 
     private ILayer getLastLayer() {

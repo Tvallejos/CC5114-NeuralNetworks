@@ -55,7 +55,7 @@ public interface ILayer {
      *
      * @param desiredOutput
      */
-    void updateError(double desiredOutput);
+    void updateError(ArrayList<Double> desiredOutput);
 
     /**
      * get the list of each neuron set of weights

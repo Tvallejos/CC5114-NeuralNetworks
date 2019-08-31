@@ -17,10 +17,13 @@ public class LastLayer extends AbstractLayer {
     }
 
     @Override
-    public void updateError(double desiredOutput) {
-        for (INeuron neuron : neurons) {
-            neuron.updateError(desiredOutput - neuron.getOutput());
+    public void updateError(ArrayList<Double> desiredOutput) {
+        int size = getNumberOfNeurons();
+        for (int i = 0; i < size ; i++) {
+            INeuron actualNeuron =neurons.get(i);
+            actualNeuron.updateError(desiredOutput.get(i)-actualNeuron.getOutput());
         }
+        previousLayer.updateError(desiredOutput);
 
     }
 

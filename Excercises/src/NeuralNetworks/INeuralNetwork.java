@@ -24,5 +24,7 @@ public interface INeuralNetwork {
      * @param X             input
      * @param desiredOutput
      */
-    void learn(ArrayList<Double> X, double desiredOutput);
+    void learn(ArrayList<Double> X, ArrayList<Double> desiredOutput);
+
+    double getLoss();
 }

@@ -77,7 +77,7 @@ public abstract class AbstractLayer implements ILayer {
     }
 
     @Override
-    public void updateError(double desiredOutput) {
+    public void updateError(ArrayList<Double> desiredOutput) {
         ArrayList<ArrayList<Double>> weights = nextLayer.getListOfNeuronWeights();
         ArrayList<Double> deltas = nextLayer.getListOfNeuronDeltas();
         int numOfNeurons = getNumberOfNeurons();
