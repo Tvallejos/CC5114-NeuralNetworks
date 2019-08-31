@@ -95,6 +95,13 @@ public abstract class AbstractNeuron implements INeuron {
         return W.size();
     }
 
+    @Override
+    public void updateWightsAndBias(ArrayList<Double> input) {
+        for (int i = 0; i < size; i++) {
+            W.set(i,W.get(i)+(lr*delta*input.get(i)));
+        }
+        b += (lr*delta);
+    }
     /*public ArrayList<Double> normalize(ArrayList<Integer> X, int dl, int dh, Double nh, Double nl) {
         int Xsize = X.size();
         ArrayList<Double> normalizedInput = new ArrayList<>();

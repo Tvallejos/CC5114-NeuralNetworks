@@ -23,4 +23,9 @@ public class LastLayer extends AbstractLayer {
         }
 
     }
+
+    @Override
+    public void updateWeightsAndBias(ArrayList<Double> inputs) {
+        super.updateNeuronsWeightsAndBias(inputs);
+    }
 }

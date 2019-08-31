@@ -30,6 +30,7 @@ public interface INeuron {
     ArrayList<Double> getWeights();
     double getDelta();
     int getNumberOfInputs();
+    void updateWightsAndBias(ArrayList<Double> input);
 
     // normalizacion va a nivel de red
     //ArrayList<Double> normalize(ArrayList<Integer> X, int dl, int dh, Double nh, Double nl);

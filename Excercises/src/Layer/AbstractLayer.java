@@ -76,8 +76,8 @@ public abstract class AbstractLayer implements ILayer {
         ArrayList<ArrayList<Double>> weights = nextLayer.getListOfNeuronWeights();
         ArrayList<Double> deltas = nextLayer.getListOfNeuronDeltas();
         int numOfNeurons = getNumberOfNeurons();
-        for (int i = 0; i< numOfNeurons; i++) {
-            Double newError = Sum(Multiply(weights.get(i),deltas.get(i)));
+        for (int i = 0; i < numOfNeurons; i++) {
+            Double newError = Sum(Multiply(weights.get(i), deltas.get(i)));
             neurons.get(i).updateError(newError);
         }
     }
@@ -98,5 +98,32 @@ public abstract class AbstractLayer implements ILayer {
             ans.add(X.get(i) * k);
         }
         return ans;
+    }
+
+    @Override
+    public ArrayList<Double> getNeuronsOutputs() {
+        ArrayList<Double> outputs = new ArrayList<>();
+        for (INeuron neuron : neurons) {
+            outputs.add(neuron.getOutput());
+        }
+        return outputs;
+    }
+
+    @Override
+    public void updateWeightsAndBias(ArrayList<Double> inputs) {
+        updateNeuronsWeightsAndBias(inputs);
+        updateNextLayerWeightsAndBias();
+
+    }
+
+    protected void updateNeuronsWeightsAndBias(ArrayList<Double> inputs) {
+        for (INeuron neuron : neurons) {
+            neuron.updateWightsAndBias(inputs);
+        }
+    }
+
+    protected void updateNextLayerWeightsAndBias() {
+        ArrayList<Double> outputs = getNeuronsOutputs();
+        nextLayer.updateWeightsAndBias(outputs);
     }
 }

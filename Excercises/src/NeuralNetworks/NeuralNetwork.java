@@ -65,6 +65,7 @@ public class NeuralNetwork implements INeuralNetwork {
     public void learn(ArrayList<Double> X, double desiredOutput) {
         getFirstLayer().feed(X);
         getLastLayer().updateError(desiredOutput);
+        getFirstLayer().updateWeightsAndBias(X);
     }
 
     private ILayer getLastLayer() {
