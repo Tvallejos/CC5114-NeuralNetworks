@@ -5,6 +5,10 @@ import Perceptron.ActivationFunction.Sigmoid;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * @Author Tomas Vallejos
+ * Class which represents a neuron with sigmoid activation function
+ */
 public class SigmoidNeuron extends AbstractNeuron {
 
     public SigmoidNeuron(int Wnum){

@@ -47,9 +47,7 @@ public abstract class AbstractNeuron implements INeuron {
         b += lr * diff;
     }
 
-    // TODO change firm to AL double X, AL double Y
-    @Override
-    public double weightedSum(ArrayList<Double> X) {
+    private double weightedSum(ArrayList<Double> X) {
         double sum = 0;
         for (int i = 0; i < size; i++) {
             sum += X.get(i) * W.get(i);
@@ -66,8 +64,8 @@ public abstract class AbstractNeuron implements INeuron {
     }
 
     @Override
-    public void updateError(double aError) {
-        error = aError;
+    public void updateError(double anError) {
+        error = anError;
         updateDelta();
     }
 
@@ -96,11 +94,11 @@ public abstract class AbstractNeuron implements INeuron {
     }
 
     @Override
-    public void updateWightsAndBias(ArrayList<Double> input) {
+    public void updateWeightsAndBias(ArrayList<Double> input) {
         for (int i = 0; i < size; i++) {
-            W.set(i,W.get(i)+(lr*delta*input.get(i)));
+            W.set(i, W.get(i) + (lr * delta * input.get(i)));
         }
-        b += (lr*delta);
+        b += (lr * delta);
     }
     /*public ArrayList<Double> normalize(ArrayList<Integer> X, int dl, int dh, Double nh, Double nl) {
         int Xsize = X.size();

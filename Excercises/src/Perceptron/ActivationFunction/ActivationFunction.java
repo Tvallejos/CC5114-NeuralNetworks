@@ -8,6 +8,7 @@ public interface ActivationFunction {
 
     /**
      * Apply the activation function to the input x
+     *
      * @param x input
      * @return the result of the function applied to x
      */
@@ -15,6 +16,7 @@ public interface ActivationFunction {
 
     /**
      * Apply the derivative of activation function to the input x
+     *
      * @param x input
      * @return the result of the derivative of the function applied to x
      */

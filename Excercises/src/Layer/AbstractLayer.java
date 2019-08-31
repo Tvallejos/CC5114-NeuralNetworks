@@ -4,6 +4,11 @@ import Perceptron.*;
 
 import java.util.ArrayList;
 
+/**
+ * @Author Tomas Vallejos
+ * class which represents an abstract layer it implements the most of the Ilayer
+ * interface methods
+ */
 public abstract class AbstractLayer implements ILayer {
     protected ArrayList<INeuron> neurons;
     protected ILayer nextLayer;
@@ -41,7 +46,7 @@ public abstract class AbstractLayer implements ILayer {
         return feedNextLayer(Outputs);
     }
 
-    public ArrayList<Double> feedNeurons(ArrayList<Double> X) {
+    protected ArrayList<Double> feedNeurons(ArrayList<Double> X) {
         ArrayList<Double> Outputs = new ArrayList<>();
         for (INeuron neuron : neurons) {
             Outputs.add(neuron.feed(X));
@@ -49,7 +54,7 @@ public abstract class AbstractLayer implements ILayer {
         return Outputs;
     }
 
-    public ArrayList<Double> feedNextLayer(ArrayList<Double> Outputs) {
+    private ArrayList<Double> feedNextLayer(ArrayList<Double> Outputs) {
         return nextLayer.feed(Outputs);
     }
 
@@ -100,8 +105,8 @@ public abstract class AbstractLayer implements ILayer {
         return ans;
     }
 
-    @Override
-    public ArrayList<Double> getNeuronsOutputs() {
+
+    private ArrayList<Double> getNeuronsOutputs() {
         ArrayList<Double> outputs = new ArrayList<>();
         for (INeuron neuron : neurons) {
             outputs.add(neuron.getOutput());
@@ -118,7 +123,7 @@ public abstract class AbstractLayer implements ILayer {
 
     protected void updateNeuronsWeightsAndBias(ArrayList<Double> inputs) {
         for (INeuron neuron : neurons) {
-            neuron.updateWightsAndBias(inputs);
+            neuron.updateWeightsAndBias(inputs);
         }
     }
 
