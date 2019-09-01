@@ -27,4 +27,10 @@ public interface INeuralNetwork {
     void learn(ArrayList<Double> X, ArrayList<Double> desiredOutput);
 
     double getLoss();
+
+    void train(int percentageOfTraining);
+
+    void train(int percentageOfTraining, int epoch);
+
+    void setData(String filePath);
 }

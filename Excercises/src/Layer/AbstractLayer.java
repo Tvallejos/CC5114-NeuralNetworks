@@ -61,18 +61,26 @@ public abstract class AbstractLayer implements ILayer {
     @Override
     public ArrayList<ArrayList<Double>> getListOfNeuronWeights() {
         ArrayList<ArrayList<Double>> listOfNeuronWeights = new ArrayList<>();
-        for (INeuron neuron : neurons) {
-            listOfNeuronWeights.add(neuron.getWeights());
+        for (int i = 0; i < neurons.get(0).getNumberOfInputs(); i++) {
+            ArrayList<Double> ithWeights = new ArrayList<>();
+            for (INeuron neuron : neurons) {
+                ithWeights.add(neuron.getWeights().get(i));
+                //listOfNeuronWeights.add(neuron.getWeights());
+            }
+            listOfNeuronWeights.add(ithWeights);
+
         }
+
         return listOfNeuronWeights;
     }
 
     @Override
     public ArrayList<Double> getListOfNeuronDeltas() {
         ArrayList<Double> listOfNeuronDeltas = new ArrayList<>();
-        for (int i = 0; i < neurons.get(0).getNumberOfInputs(); i++) {
+        for (int i = 0; i < getNumberOfNeurons(); i++) {
             listOfNeuronDeltas.add(neurons.get(i).getDelta());
         }
+
         return listOfNeuronDeltas;
     }
 
@@ -82,9 +90,20 @@ public abstract class AbstractLayer implements ILayer {
         ArrayList<Double> deltas = nextLayer.getListOfNeuronDeltas();
         int numOfNeurons = getNumberOfNeurons();
         for (int i = 0; i < numOfNeurons; i++) {
-            Double newError = Sum(Multiply(weights.get(i), deltas.get(i)));
+            //Double newError = Sum(Multiply(weights.get(i), deltas.get(i)));
+            Double newError = multipliedSum(weights.get(i),deltas);
+            //idea
+            //Double newError = Sum(Multiply(weights.get(i).get(i), deltas.get(i)));
             neurons.get(i).updateError(newError);
         }
+    }
+
+    private double multipliedSum(ArrayList<Double> weights, ArrayList<Double> deltas){
+        double sum = 0;
+        for (int i = 0; i <weights.size() ; i++) {
+            sum+=weights.get(i)*deltas.get(i);
+        }
+        return sum;
     }
 
     private Double Sum(ArrayList<Double> X) {

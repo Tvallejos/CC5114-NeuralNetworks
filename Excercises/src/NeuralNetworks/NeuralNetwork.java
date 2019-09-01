@@ -1,10 +1,14 @@
 package NeuralNetworks;
 
 import Layer.*;
+import Utils.DatasetParser;
 
+import javax.xml.crypto.Data;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class NeuralNetwork implements INeuralNetwork {
+    private DatasetParser DataParser;
     private ArrayList<ILayer> layers;
     private int nTries;
     private int MSE;
@@ -20,12 +24,19 @@ public class NeuralNetwork implements INeuralNetwork {
         MSE = 0;
     }
 
+    @Override
+    public void setData(String filePath) {
+        DataParser = new DatasetParser(filePath);
+    }
+
     private void connectLayers() {
         int size = layers.size();
+        getFirstLayer().setNextLayer(layers.get(1));
         for (int i = 1; i < size - 1; i++) {
             layers.get(i).setPreviousLayer(layers.get(i - 1));
             layers.get(i).setNextLayer(layers.get(i + 1));
         }
+        getLastLayer().setPreviousLayer(layers.get(size-2));
     }
 
     private void addLayers(int numberOfLayers, ArrayList<Integer> numberOfNeuronsPerLayer, int numberOfInputs) {
@@ -36,7 +47,7 @@ public class NeuralNetwork implements INeuralNetwork {
         for (int i = 1; i < numberOfLayers - 1; i++) {
             addLayer(numberOfNeuronsPerLayer.get(i), numberOfNeuronsPerLayer.get(i - 1));
         }
-        addLastLayer(numberOfNeuronsPerLayer.get(numberOfLayers - 1), numberOfNeuronsPerLayer.get(numberOfLayers - 1));
+        addLastLayer(numberOfNeuronsPerLayer.get(numberOfLayers - 1), numberOfNeuronsPerLayer.get(numberOfLayers - 2));
 
     }
 
@@ -58,7 +69,8 @@ public class NeuralNetwork implements INeuralNetwork {
 
     @Override
     public ArrayList<Double> feed(ArrayList<Double> X) {
-        return getFirstLayer().feed(X);
+        ArrayList<Double> normalizedInput = normalize(X, DataParser.getMins(), DataParser.getMaxs(), 1, 0);
+        return getFirstLayer().feed(normalizedInput);
     }
 
     public ILayer getFirstLayer() {
@@ -90,8 +102,76 @@ public class NeuralNetwork implements INeuralNetwork {
         return MSE / nTries;
     }
 
+    @Override
+    public void train(int percentageOfTraining) {
+        int numOfLearningRows = DataParser.getData().size() * percentageOfTraining / 100;
+        for (int i = 0; i < numOfLearningRows; i++) {
+            learn(DataParser.getDataInput(i), DataParser.getOutput(i));
+        }
+        int wellPredicted=0;
+        int totalTests = DataParser.getData().size()-numOfLearningRows;
+        for (int i = numOfLearningRows; i < DataParser.getData().size(); i++) {
+            resetErrors();
+            ArrayList<Double> output = feed(DataParser.getDataInput(i));
+            double max = 0.0;
+            int maxIndex=0;
+            for (int j = 0; j <output.size() ; j++) {
+                if(max<output.get(j)){
+                    max = output.get(j);
+                    maxIndex=j;
+                }
+            }
+            ArrayList<Double> prediction = new ArrayList<>(Arrays.asList(0.0,0.0,0.0));
+            prediction.set(maxIndex,1.0);
+            if(DataParser.getOutput(i).get(maxIndex)==1.0){
+                wellPredicted++;
+            }
+
+        }
+        System.out.println("Predicted well "+wellPredicted+" of " + totalTests);
+
+    }
+
+    @Override
+    public void train( int percentageOfTraining, int epoch) {
+
+        for (int i = 0; i <epoch ; i++) {
+            train(percentageOfTraining);
+        }
+
+
+    }
+
+    private void resetErrors() {
+        nTries = 0;
+        MSE = 0;
+    }
+
     private ILayer getLastLayer() {
         return layers.get(layers.size() - 1);
     }
+
+    private ArrayList<Double> normalize(ArrayList<Double> X, ArrayList<Double> dlarray, ArrayList<Double> dharray, double nh, double nl) {
+        int Xsize = X.size();
+        ArrayList<Double> normalizedInput = new ArrayList<>();
+        for (int i = 0; i < Xsize; i++) {
+            double actualX = X.get(i);
+            double normalizedValue = normalizeOneInput(actualX, dlarray.get(i), dharray.get(i), 1, 0);
+            normalizedInput.add(normalizedValue);
+        }
+        return normalizedInput;
+    }
+
+    private double normalizeOneInput(double input, double dl, double dh, double nh, double nl) {
+        double normalizedValue =
+                ((input - dl) * (nh - nl) /
+                        (dh - dl)) + nl;
+        return normalizedValue;
+    }
+
+
+    //private ArrayList<Integer> deNormalize(ArrayList<Double> X, int dl, int dh, Double nh, Double nl) {
+    //
+    //  }
 
 }

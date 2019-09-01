@@ -13,7 +13,7 @@ public class LastLayer extends AbstractLayer {
     @Override
     public ArrayList<Double> feed(ArrayList<Double> inputs) {
         ArrayList<Double> Outputs = feedNeurons(inputs);
-        return feedNeurons(Outputs);
+        return Outputs;
     }
 
     @Override

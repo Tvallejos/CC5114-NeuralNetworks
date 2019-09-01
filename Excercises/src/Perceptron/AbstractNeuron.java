@@ -100,21 +100,4 @@ public abstract class AbstractNeuron implements INeuron {
         }
         b += (lr * delta);
     }
-    /*public ArrayList<Double> normalize(ArrayList<Integer> X, int dl, int dh, Double nh, Double nl) {
-        int Xsize = X.size();
-        ArrayList<Double> normalizedInput = new ArrayList<>();
-        for (int i = 0; i < Xsize; i++) {
-            int actualX = X.get(i);
-            Double normalizedValue =
-                    ((actualX - dl) * (nh - nl) /
-                            (dh - dl)) + nl;
-            normalizedInput.add(normalizedValue);
-        }
-        return normalizedInput;
-    }
-
-    public ArrayList<Integer> deNormalize(ArrayList<Double> X, int dl, int dh, Double nh, Double nl) {
-
-    }
-    */
 }
