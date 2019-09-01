@@ -96,6 +96,11 @@ public class NeuralNetwork implements INeuralNetwork {
     }
 
     @Override
+    public double getAccuracy() {
+        return globalAccuracy*100/nTries;
+    }
+
+    @Override
     public void learn(ArrayList<Double> X, ArrayList<Double> desiredOutput) {
         ArrayList<Double> RealOutput = feed(X);
         getLastLayer().updateError(desiredOutput);
@@ -133,7 +138,7 @@ public class NeuralNetwork implements INeuralNetwork {
         for (int i = numOfLearningRows; i < DataParser.getData().size(); i++) {
             ArrayList<Double> output = feed(DataParser.getDataInput(i));
             ArrayList<Double> prediction = getOneHotPrediction(output);
-            int goldLabel = getIndexOfTheOutput(output);
+            int goldLabel = getIndexOfTheOutput(DataParser.getOutput(i));
             int predictedLabel = getIndexOfTheOutput(prediction);
             confusionMatrix.get(predictedLabel).set(goldLabel, confusionMatrix.get(predictedLabel).get(goldLabel) + 1);
             if (prediction.get(goldLabel) == 1.0) {
@@ -175,12 +180,29 @@ public class NeuralNetwork implements INeuralNetwork {
     @Override
     public void train(int percentageOfTraining, int epoch) {
         createFile("Error.txt");
+        createFile("Accuracy.txt");
         for (int i = 0; i < epoch; i++) {
             train(percentageOfTraining);
             appendError(i);
+            appendAcuracy(i);
         }
         createFile("Confusion.txt");
         saveConfusionMatrix();
+    }
+
+    private void appendAcuracy(int index) {
+        try {
+            File logFile = new File("Accuracy.txt");
+
+            BufferedWriter writer = new BufferedWriter(new FileWriter(logFile, true));
+            String string;
+            string = index + " " + getAccuracy() + '\n';
+            writer.write(string);
+            writer.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void saveConfusionMatrix() {
@@ -236,7 +258,7 @@ public class NeuralNetwork implements INeuralNetwork {
         }
     }
 
-    private void resetErrors() {
+    private void    resetErrors() {
         nTries = 0;
         MSE = 0;
         globalAccuracy = 0;

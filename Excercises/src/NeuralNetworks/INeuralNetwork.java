@@ -57,4 +57,10 @@ public interface INeuralNetwork {
      * @return confusion Matrix
      */
     ArrayList<ArrayList<Integer>> getConfusionMatrix();
+
+    /**
+     * returns the accuracy percentage
+     * @return
+     */
+    double getAccuracy();
 }

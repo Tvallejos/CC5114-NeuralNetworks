@@ -41,6 +41,7 @@ public class NeuralNetworkTest {
     public void ItWorks() {
         //NN.train(80);
         NN.train(70, 200);
-        NN.getConfusionMatrix();
+        double acc = NN.getAccuracy();
+        NN.getAccuracy();
     }
 }
