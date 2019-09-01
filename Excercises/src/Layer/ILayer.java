@@ -7,19 +7,6 @@ import java.util.ArrayList;
  * Interface for Neural Networks implementation
  */
 public interface ILayer {
-    /**
-     * Feeds every neuron with the input
-     * @param X input
-     * @return ArrayList which has at index i the output of the i-th neuron
-     */
-    //ArrayList<Double> feedNeurons(ArrayList<Double> X);
-
-    /**
-     * feed the next layer with some input
-     * @param X input
-     * @return
-     */
-    //ArrayList<Double> feedNextLayer(ArrayList<Double> X);
 
     /**
      * Feeds every neuron with the input and feeds the next layer with the output
@@ -71,8 +58,6 @@ public interface ILayer {
      */
     ArrayList<Double> getListOfNeuronDeltas();
 
-    //ArrayList<Double> getNeuronsOutputs();
-
     /**
      * updates the weights and bias of every neuron and forward propagates it
      * until the last layer
@@ -80,6 +65,4 @@ public interface ILayer {
      * @param inputs layer inputs, these are part of the weight update formula
      */
     void updateWeightsAndBias(ArrayList<Double> inputs);
-    // TODO learn
-    //double learn(ArrayList<Double> X,double desiredOutput);
 }

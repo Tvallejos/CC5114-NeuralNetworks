@@ -40,6 +40,7 @@ public class NeuralNetworkTest {
     @Test
     public void ItWorks() {
         //NN.train(80);
-        NN.train(80, 100);
+        NN.train(70, 200);
+        NN.getConfusionMatrix();
     }
 }

@@ -24,8 +24,6 @@ public interface INeuron {
      */
     void learn(ArrayList<Double> X, int desiredOutput);
 
-    //double weightedSum(ArrayList<Double> X);
-
     /**
      * it sets the neuron error to anError
      *
@@ -33,12 +31,28 @@ public interface INeuron {
      */
     void updateError(double anError);
 
+    /**
+     * gets the neuron output
+     * @return
+     */
     double getOutput();
 
+    /**
+     * Gets the neuron list of weights
+     * @return
+     */
     ArrayList<Double> getWeights();
 
+    /**
+     * Gets the neuron delta
+     * @return
+     */
     double getDelta();
 
+    /**
+     * Gets the number of inputs which the neuron recives
+     * @return
+     */
     int getNumberOfInputs();
 
     /**
@@ -48,8 +62,4 @@ public interface INeuron {
      * @param input
      */
     void updateWeightsAndBias(ArrayList<Double> input);
-
-    // normalizacion va a nivel de red
-    //ArrayList<Double> normalize(ArrayList<Integer> X, int dl, int dh, Double nh, Double nl);
-    //ArrayList<Integer> deNormalize(ArrayList<Double> X, int dl, int dh, Double nh, Double nl);
 }

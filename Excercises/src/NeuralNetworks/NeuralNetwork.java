@@ -3,20 +3,20 @@ package NeuralNetworks;
 import Layer.*;
 import Utils.DatasetParser;
 
-import javax.xml.crypto.Data;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.text.SimpleDateFormat;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 
 public class NeuralNetwork implements INeuralNetwork {
     private DatasetParser DataParser;
     private ArrayList<ILayer> layers;
     private int nTries;
     private double MSE;
+    private double globalAccuracy;
+    ArrayList<ArrayList<Integer>> confusionMatrix;
 
     //jp dijo k lo hiciera como fuera mas facil j3j3
     //ultimo parametro no se usa pk se puede deducir
@@ -27,6 +27,16 @@ public class NeuralNetwork implements INeuralNetwork {
         connectLayers();
         nTries = 0;
         MSE = 0;
+        globalAccuracy = 0;
+        createConfusionMatrix(numberOfOutputs);
+        DataParser = new DatasetParser("data/bezdekIris.txt");
+    }
+
+    private void createConfusionMatrix(int numberOfOutputs) {
+        confusionMatrix = new ArrayList<>();
+        for (int i = 0; i < numberOfOutputs; i++) {
+            confusionMatrix.add(new ArrayList<>(Arrays.asList(0, 0, 0)));
+        }
     }
 
     @Override
@@ -56,10 +66,8 @@ public class NeuralNetwork implements INeuralNetwork {
 
     }
 
-
     private void addLastLayer(int numberOfNeurons, int numberOfInputs) {
         layers.add(new LastLayer(numberOfNeurons, numberOfInputs));
-
     }
 
     private void addFirstLayer(int numberOfNeurons, int numberOfInputs) {
@@ -80,6 +88,11 @@ public class NeuralNetwork implements INeuralNetwork {
 
     public ILayer getFirstLayer() {
         return layers.get(0);
+    }
+
+    @Override
+    public ArrayList<ArrayList<Integer>> getConfusionMatrix() {
+        return confusionMatrix;
     }
 
     @Override
@@ -111,48 +124,92 @@ public class NeuralNetwork implements INeuralNetwork {
         for (int i = 0; i < numOfLearningRows; i++) {
             learn(DataParser.getDataInput(i), DataParser.getOutput(i));
         }
-        int wellPredicted = 0;
-        int totalTests = DataParser.getData().size() - numOfLearningRows;
+        evaluate(numOfLearningRows);
+    }
+
+    private void evaluate(int numOfLearningRows) {
         resetErrors();
+        resetConfusionMatrix();
         for (int i = numOfLearningRows; i < DataParser.getData().size(); i++) {
             ArrayList<Double> output = feed(DataParser.getDataInput(i));
-            double max = 0.0;
-            int maxIndex = 0;
-            for (int j = 0; j < output.size(); j++) {
-                if (max < output.get(j)) {
-                    max = output.get(j);
-                    maxIndex = j;
-                }
+            ArrayList<Double> prediction = getOneHotPrediction(output);
+            int goldLabel = getIndexOfTheOutput(output);
+            int predictedLabel = getIndexOfTheOutput(prediction);
+            confusionMatrix.get(predictedLabel).set(goldLabel, confusionMatrix.get(predictedLabel).get(goldLabel) + 1);
+            if (prediction.get(goldLabel) == 1.0) {
+                globalAccuracy++;
             }
-            ArrayList<Double> prediction = new ArrayList<>(Arrays.asList(0.0, 0.0, 0.0));
-            prediction.set(maxIndex, 1.0);
-            if (DataParser.getOutput(i).get(maxIndex) == 1.0) {
-                wellPredicted++;
-            }
-            nTries++;
-            double diffSqured = calculateDiffSquared(output, DataParser.getOutput(i));
-            MSE += diffSqured;
-
+            updateError(output, DataParser.getOutput(i));
         }
-        System.out.println("Predicted well " + wellPredicted + " of " + totalTests);
+    }
 
+    private void resetConfusionMatrix() {
+        createConfusionMatrix(getLastLayer().getNumberOfNeurons());
+    }
+
+    private void updateError(ArrayList<Double> output, ArrayList<Double> desiredOutput) {
+        nTries++;
+        double diffSqured = calculateDiffSquared(output, desiredOutput);
+        MSE += diffSqured;
+    }
+
+    private int getIndexOfTheOutput(ArrayList<Double> output) {
+        double max = 0.0;
+        int maxIndex = 0;
+        for (int j = 0; j < output.size(); j++) {
+            if (max < output.get(j)) {
+                max = output.get(j);
+                maxIndex = j;
+            }
+        }
+        return maxIndex;
+    }
+
+    private ArrayList<Double> getOneHotPrediction(ArrayList<Double> output) {
+        int maxIndex = getIndexOfTheOutput(output);
+        ArrayList<Double> prediction = new ArrayList<>(Arrays.asList(0.0, 0.0, 0.0));
+        prediction.set(maxIndex, 1.0);
+        return prediction;
     }
 
     @Override
     public void train(int percentageOfTraining, int epoch) {
-        createFile();
+        createFile("Error.txt");
         for (int i = 0; i < epoch; i++) {
             train(percentageOfTraining);
             appendError(i);
         }
-
-
+        createFile("Confusion.txt");
+        saveConfusionMatrix();
     }
 
-    private void createFile() {
+    private void saveConfusionMatrix() {
+
         try {
-            File logFile = new File("Error.txt");
+            File logFile = new File("Confusion.txt");
+
+            BufferedWriter writer = new BufferedWriter(new FileWriter(logFile, true));
+            String string;
+            for (ArrayList<Integer> predictedClass : confusionMatrix) {
+                string = "";
+                for (int i = 0; i < predictedClass.size() - 1; i++) {
+                    string += predictedClass.get(i) + " ";
+                }
+                string += Integer.toString(predictedClass.get(predictedClass.size() - 1)) + '\n';
+                writer.write(string);
+            }
+            writer.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void createFile(String fileName) {
+        try {
+            File logFile = new File(fileName);
             BufferedWriter writer = new BufferedWriter(new FileWriter(logFile));
+            writer.close();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -168,7 +225,7 @@ public class NeuralNetwork implements INeuralNetwork {
 
             BufferedWriter writer = new BufferedWriter(new FileWriter(logFile, true));
             String string;
-            string = Integer.toString(index) + " " + getLoss() + '\n';
+            string = index + " " + getLoss() + '\n';
             writer.write(string);
 
 
@@ -182,6 +239,7 @@ public class NeuralNetwork implements INeuralNetwork {
     private void resetErrors() {
         nTries = 0;
         MSE = 0;
+        globalAccuracy = 0;
     }
 
     private ILayer getLastLayer() {
@@ -193,7 +251,7 @@ public class NeuralNetwork implements INeuralNetwork {
         ArrayList<Double> normalizedInput = new ArrayList<>();
         for (int i = 0; i < Xsize; i++) {
             double actualX = X.get(i);
-            double normalizedValue = normalizeOneInput(actualX, dlarray.get(i), dharray.get(i), 1, 0);
+            double normalizedValue = normalizeOneInput(actualX, dlarray.get(i), dharray.get(i), nh, nl);
             normalizedInput.add(normalizedValue);
         }
         return normalizedInput;

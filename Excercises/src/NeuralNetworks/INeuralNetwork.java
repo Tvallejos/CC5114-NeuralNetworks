@@ -26,11 +26,35 @@ public interface INeuralNetwork {
      */
     void learn(ArrayList<Double> X, ArrayList<Double> desiredOutput);
 
+    /**
+     * Returns the MSE of the last evaluate part in a train
+     * @return  MSE
+     */
     double getLoss();
 
+    /**
+     * It trains the NN with the set dataset and percentage of training
+     * and then evaluates the NN performance with the rest of the dataset
+     * @param percentageOfTraining
+     */
     void train(int percentageOfTraining);
 
+    /**
+     * trains for a number of epoch
+     * @param percentageOfTraining
+     * @param epoch
+     */
     void train(int percentageOfTraining, int epoch);
 
+    /**
+     * set the Dataset from a filePath
+     * @param filePath
+     */
     void setData(String filePath);
+
+    /**
+     * returns the confusion matrix of the last training
+     * @return confusion Matrix
+     */
+    ArrayList<ArrayList<Integer>> getConfusionMatrix();
 }
