@@ -44,7 +44,8 @@ def plotError(data):
     plt.plot(index,errors,'ro')
     plt.axis([0,200,0,1])
     plt.xlabel('Epoch')
-    plt.ylabel('Error')
+    plt.ylabel('Mean Squared Error')
+    plt.title('MSE vs epoch')
     plt.show()
 
 #File = open("./test.txt",'r')
