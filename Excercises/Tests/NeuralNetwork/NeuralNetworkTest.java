@@ -17,8 +17,10 @@ public class NeuralNetworkTest {
 
     @Before
     public void Setup() {
-        int numberOfLayers = 4;
-        ArrayList<Integer> numberOfNeuronsPerLayer = new ArrayList<>(Arrays.asList(5, 4, 5, 3));
+        dp = new DatasetParser("data/bezdekIris.txt");
+
+        int numberOfLayers = 2;
+        ArrayList<Integer> numberOfNeuronsPerLayer = new ArrayList<>(Arrays.asList(4, 3));
         int numberOfInputs = 4;
         int numberOfOutputs = 3;
 
@@ -37,6 +39,7 @@ public class NeuralNetworkTest {
 
     @Test
     public void ItWorks() {
-        NN.train(70, 10);
+        //NN.train(80);
+        NN.train(80, 100);
     }
 }

@@ -70,7 +70,7 @@ public abstract class AbstractNeuron implements INeuron {
     }
 
     protected void updateDelta() {
-        delta = error * (output - (1.0 - output));
+        delta = error * (output *(1.0 - output));
     }
 
     @Override

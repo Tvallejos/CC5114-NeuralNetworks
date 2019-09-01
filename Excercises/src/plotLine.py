@@ -33,6 +33,25 @@ def plotLine(data):
     plt.axis([0,1,0,1])
     plt.show()
 
-File = open("./test.txt",'r')
+def plotError(data):
+    index= []
+    errors=[]
+    for line in data:
+        line = line.replace('\n',"")
+        line = line.split(" ")
+        index.append(int(line[0]))
+        errors.append(float(line[1]))
+    plt.plot(index,errors,'ro')
+    plt.axis([0,200,0,1])
+    plt.xlabel('Epoch')
+    plt.ylabel('Error')
+    plt.show()
+
+#File = open("./test.txt",'r')
+#lines = File.readlines()
+#plotLine(lines)
+
+File = open("../Error.txt",'r')
 lines = File.readlines()
-plotLine(lines)
+plotError(lines)
+
