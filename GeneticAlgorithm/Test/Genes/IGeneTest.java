@@ -1,4 +1,4 @@
-package GA;
+package Genes;
 
 public interface IGeneTest {
     void geneSetup();

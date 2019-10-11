@@ -1,5 +1,6 @@
-package GA.WordExcercise;
+package GA;
 
+import GA.Genes.IGene;
 import GA.Genes.StringGene;
 
 import java.util.ArrayList;
@@ -32,8 +33,24 @@ public class Population {
         }
     }
 
+    public Allele getAlleleValues() {
+        return alleleValues;
+    }
+
+    public int getChromosomeLength() {
+        return chromosomeLength;
+    }
+
+    public int getPopulationSize() {
+        return populationSize;
+    }
+
+    public ArrayList<Individual> getIndividuals() {
+        return individuals;
+    }
+
     private Individual createRandomIndividual(int seed) {
-        ArrayList<StringGene> chromosome = new ArrayList<>();
+        ArrayList<IGene> chromosome = new ArrayList<>();
         Random r = new Random(seed);
         StringGene actualStringGene;
         String allele;

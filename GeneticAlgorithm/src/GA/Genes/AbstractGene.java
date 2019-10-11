@@ -1,6 +1,6 @@
 package GA.Genes;
-import GA.Genes.IGene;
 
+// TODO Abstract Gene documentation
 public abstract class AbstractGene implements IGene {
 
     protected String alleleValue;
@@ -15,5 +15,13 @@ public abstract class AbstractGene implements IGene {
 
     public int getIntValue(){
         return Integer.parseInt(alleleValue);
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(o instanceof IGene){
+            return alleleValue.equals(((IGene) o).getStringValue());
+        }
+        return false;
     }
 }

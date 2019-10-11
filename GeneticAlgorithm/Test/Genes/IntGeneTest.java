@@ -1,4 +1,4 @@
-package GA;
+package Genes;
 
 import GA.Genes.IntGene;
 

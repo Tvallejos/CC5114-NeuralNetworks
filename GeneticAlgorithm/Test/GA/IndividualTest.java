@@ -1,7 +1,7 @@
 package GA;
 
+import GA.Genes.IGene;
 import GA.Genes.StringGene;
-import GA.WordExcercise.Individual;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -17,13 +17,13 @@ public class IndividualTest {
     @BeforeEach
     void Setup(){
         StringGene[] stringGenes = {new StringGene("red"),new StringGene("red"),new StringGene("blue")};
-        ArrayList<StringGene> genesList = new ArrayList<>(Arrays.asList(stringGenes));
+        ArrayList<IGene> genesList = new ArrayList<>(Arrays.asList(stringGenes));
         individual = new Individual(genesList);
     }
 
     @Test
     void checkGenesTest(){
-        ArrayList<StringGene> stringGenes = individual.getGenes();
+        ArrayList<IGene> stringGenes = individual.getGenes();
         assertEquals("red", stringGenes.get(0).getStringValue());
         assertEquals("red", stringGenes.get(1).getStringValue());
         assertEquals("blue", stringGenes.get(2).getStringValue());

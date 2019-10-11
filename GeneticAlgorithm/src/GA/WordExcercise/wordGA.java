@@ -1,6 +1,7 @@
 package GA.WordExcercise;
 
 import GA.IGeneticAlgorithm;
+import GA.Population;
 
 public class wordGA implements IGeneticAlgorithm {
     private Population population;
