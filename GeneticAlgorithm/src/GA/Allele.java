@@ -44,4 +44,8 @@ public class Allele {
         }
         return false;
     }
+
+    public String getRandom() {
+        return getRandom(new Random().nextInt());
+    }
 }

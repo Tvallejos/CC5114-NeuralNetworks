@@ -1,6 +1,6 @@
-package Selection;
+package GA.Selection;
 
-import FitnessFunction.IFitnessFunction;
+import GA.Functions.IFitnessFunction;
 import GA.Individual;
 
 import java.util.ArrayList;

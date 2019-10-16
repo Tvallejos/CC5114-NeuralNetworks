@@ -5,7 +5,7 @@ import GA.Population;
 
 public class wordGA implements IGeneticAlgorithm {
     private Population population;
-    //private FitnessFunction fitnessFunction;
+    //private GA.FitnessFunction fitnessFunction;
     //private ReproductionMethod reproductionMethod;
     //private SelectionMethod selectionMethod;
 

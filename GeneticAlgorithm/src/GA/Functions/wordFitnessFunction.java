@@ -1,6 +1,6 @@
-package GA.WordExcercise;
+package GA.Functions;
 
-import FitnessFunction.IFitnessFunction;
+import GA.Functions.IFitnessFunction;
 import GA.Genes.IGene;
 import GA.Individual;
 
@@ -15,7 +15,6 @@ public class wordFitnessFunction implements IFitnessFunction {
 
     @Override
     public int run(Individual i) {
-
         String input = inputToString(i.getGenes());
         return fitnessCalculation(input);
     }

@@ -1,4 +1,4 @@
-package GeneticOperators;
+package GA.GeneticOperators;
 
 import GA.IIndividual;
 

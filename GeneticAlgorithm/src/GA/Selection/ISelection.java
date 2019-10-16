@@ -1,4 +1,4 @@
-package Selection;
+package GA.Selection;
 
 import GA.Individual;
 

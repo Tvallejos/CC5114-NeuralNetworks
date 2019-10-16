@@ -1,6 +1,7 @@
 package GA.WordExcercise;
 
-import FitnessFunction.IFitnessFunction;
+import GA.Functions.IFitnessFunction;
+import GA.Functions.wordFitnessFunction;
 import GA.Genes.StringGene;
 import GA.Individual;
 import org.junit.jupiter.api.BeforeEach;

@@ -1,9 +1,6 @@
-package FitnessFunction;
+package GA.Functions;
 
-import GA.Genes.IGene;
 import GA.Individual;
-
-import java.util.ArrayList;
 
 // TODO IFitness documentation
 
