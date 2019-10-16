@@ -1,11 +1,10 @@
 package GA;
 
 import GA.Genes.IGene;
-import GA.Genes.StringGene;
 
 import java.util.ArrayList;
 
-public class Individual {
+public class Individual implements IIndividual {
 
     private ArrayList<IGene> chromosome;
 
@@ -16,6 +15,11 @@ public class Individual {
 
     public ArrayList<IGene> getGenes(){
         return chromosome;
+    }
+
+    @Override
+    public int getGenesSize() {
+        return chromosome.size();
     }
 
     public boolean equals(Object o){

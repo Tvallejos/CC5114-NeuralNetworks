@@ -1,0 +1,12 @@
+1.Implement a genetic algorithm engine 
+	1.Use the first version of the crossover (2 parents -> 1 child)
+	2.Use the tournament selection algorithm	
+
+2.Use it to solve the word finding example 
+	
+	1.Use it to find a simple word
+	2.Use it to find a long sentence
+
+3.Produce a hotmap to explore the performance space 
+	1.Use of Matrix of configuration (population size, mutation rate)
+	2.Mesure the number of generations to find the solution (or the fitness after X generations)
