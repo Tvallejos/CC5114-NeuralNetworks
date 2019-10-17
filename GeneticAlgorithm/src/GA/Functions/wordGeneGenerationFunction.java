@@ -20,20 +20,34 @@ public class wordGeneGenerationFunction implements IGeneGenerationFunction {
 
     @Override
     public IGene generateGene() {
-        return new StringGene(alleleValues.getRandom());
+        return generateGene(new Random().nextInt());
+    }
+
+    public IGene generateGene(int seed) {
+        return generateGenes(1,seed).get(0);
     }
 
     @Override
     public ArrayList<IGene> generateGenes(int numberOfGenes) {
+        return generateGenes(numberOfGenes, new Random().nextInt());
+    }
+
+    public ArrayList<IGene> generateGenes(int numberOfGenes, int seed) {
         ArrayList<IGene> generatedGenes = new ArrayList<>();
+        Random r = new Random(seed);
+        StringGene actualStringGene;
+        String allele;
         for (int i = 0; i < numberOfGenes; i++) {
-            generatedGenes.add(generateGene());
+            allele = alleleValues.getRandom(r.nextInt());
+            actualStringGene = new StringGene(allele);
+            generatedGenes.add(actualStringGene);
         }
+
         return generatedGenes;
     }
 
-
-    public ArrayList<IIndividual> initializePopulation(int seed, int populationSize) {
+    @Override
+    public ArrayList<IIndividual> initializePopulation(int populationSize, int seed) {
         Random r = new Random(seed);
         ArrayList individuals = new ArrayList();
         for (int i = 0; i < populationSize; i++) {
@@ -58,15 +72,7 @@ public class wordGeneGenerationFunction implements IGeneGenerationFunction {
     }
 
     private Individual createRandomIndividual(int seed) {
-        ArrayList<IGene> chromosome = new ArrayList<>();
-        Random r = new Random(seed);
-        StringGene actualStringGene;
-        String allele;
-        for (int i = 0; i < chromosomeLength; i++) {
-            allele = alleleValues.getRandom(r.nextInt());
-            actualStringGene = new StringGene(allele);
-            chromosome.add(actualStringGene);
-        }
+        ArrayList<IGene> chromosome = generateGenes(chromosomeLength,seed);
         return new Individual(chromosome);
     }
 

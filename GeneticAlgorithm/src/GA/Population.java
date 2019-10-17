@@ -3,14 +3,19 @@ package GA;
 import GA.Functions.IGeneGenerationFunction;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Population {
     private ArrayList<IIndividual> individuals;
     private IGeneGenerationFunction geneGenerationFunction;
 
     public Population(IGeneGenerationFunction geneGenerationFunction, int populationSize) {
+        this(geneGenerationFunction,populationSize,new Random().nextInt());
+    }
+
+    public Population(IGeneGenerationFunction geneGenerationFunction, int populationSize, int seed) {
         this.geneGenerationFunction = geneGenerationFunction;
-        individuals = geneGenerationFunction.initializePopulation(populationSize);
+        individuals = geneGenerationFunction.initializePopulation(populationSize, seed);
     }
 
     public Allele getAlleleValues() {

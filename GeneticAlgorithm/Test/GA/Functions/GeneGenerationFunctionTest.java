@@ -28,7 +28,7 @@ public class GeneGenerationFunctionTest {
 
     @Test
     void expectedGenerationTest() {
-        ArrayList<IIndividual> generatedIndividuals = geneGenerationFunction.initializePopulation(0, 3);
+        ArrayList<IIndividual> generatedIndividuals = geneGenerationFunction.initializePopulation(3, 0);
         IGene one = new StringGene("1");
         IGene ten = new StringGene("10");
         IGene twenty = new StringGene("20");
@@ -45,6 +45,15 @@ public class GeneGenerationFunctionTest {
                         new Individual(expected2),
                         new Individual(expected3)));
         assertEquals(expectedIndividuals, generatedIndividuals);
+    }
+
+    @Test
+    void generatedGeneTest(){
+
+        IGene one = new StringGene("1");
+        IGene generatedGene = geneGenerationFunction.generateGene(0);
+
+        assertEquals(one, generatedGene );
     }
 
 }

@@ -20,19 +20,40 @@ public class GeneticAlgorithm implements IGeneticAlgorithm {
     private ISelection selector;
     private IGeneticOperator reproductor;
 
-    public GeneticAlgorithm(int populationSize, IFitnessFunction fitnessFunction, IGeneGenerationFunction geneGenerator, Double mutationRate, int maxIter) {
+    public GeneticAlgorithm(int populationSize, IFitnessFunction fitnessFunction, IGeneGenerationFunction geneGenerator, Double mutationRate, int maxIter, int seed) {
         this.populationSize = populationSize;
         this.fitnessFunction = fitnessFunction;
         this.geneGenerator = geneGenerator;
         this.maxIter = maxIter;
         selector = new Roulette(this.fitnessFunction);
+        initializePopulation(seed);
         reproductor = new GeneticOperator(mutationRate,population.getAlleleValues());
-        initializePopulation();
+
+    }
+
+    public GeneticAlgorithm(int populationSize,IFitnessFunction fitnessFunction,IGeneGenerationFunction geneGenerationFunction,Double mutationRate, int maxIter){
+        this(populationSize,fitnessFunction,geneGenerationFunction,mutationRate,maxIter,new Random().nextInt());
+    }
+
+    public int getPopulationSize() {
+        return populationSize;
+    }
+
+    public int getMaxIter() {
+        return maxIter;
+    }
+
+    public ArrayList<Integer> getFits() {
+        return fits;
+    }
+
+    public ArrayList<IIndividual> getIndividuals(){
+        return population.getIndividuals();
     }
 
     @Override
-    public void initializePopulation() {
-        population = new Population(geneGenerator, populationSize);
+    public void initializePopulation(int seed) {
+        population = new Population(geneGenerator, populationSize,seed);
     }
 
     @Override

@@ -16,4 +16,6 @@ public interface IGeneGenerationFunction {
     Allele getAlleleValues();
 
     int getChomosomeLength();
+
+    ArrayList<IIndividual> initializePopulation(int populationSize, int seed);
 }

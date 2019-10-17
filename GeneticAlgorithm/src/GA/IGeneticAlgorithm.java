@@ -2,7 +2,7 @@ package GA;
 
 //TODO documentation
 public interface IGeneticAlgorithm {
-    void initializePopulation();
+    void initializePopulation(int seed);
 
     void evaluateFitness();
 
