@@ -38,26 +38,32 @@ public class GeneticOperator implements IGeneticOperator {
         }
 
         //Try to mutate all the individuals
-        for (int i = 0; i<reproducedIndividuals.size();i++) {
+        for (int i = 0; i < reproducedIndividuals.size(); i++) {
             IIndividual mutatedInd = mutation(reproducedIndividuals.get(i));
-            reproducedIndividuals.set(i,mutatedInd);
+            reproducedIndividuals.set(i, mutatedInd);
         }
         return reproducedIndividuals;
     }
 
     @Override
     public ArrayList<IIndividual> reproduce(ArrayList<IIndividual> individuals, int howManyNew) {
-        return reproduce(individuals,howManyNew,new Random().nextInt());
+        return reproduce(individuals, howManyNew, new Random().nextInt());
     }
 
     @Override
     public IIndividual crossOver(IIndividual ind1, IIndividual ind2) {
+        return crossOver(ind1, ind2, new Random().nextInt());
+    }
+
+    public IIndividual crossOver(IIndividual ind1, IIndividual ind2, int seed) {
         assert (ind1.getGenesSize() == ind2.getGenesSize());
-        Random r = new Random();
+        Random r = new Random(seed);
+
         int randomInt = r.nextInt(ind1.getGenesSize());
         ArrayList<IGene> crossOverGenes = new ArrayList<>();
         ArrayList<IGene> ind1Genes = ind1.getGenes();
         ArrayList<IGene> ind2Genes = ind2.getGenes();
+
         // fist randomInt genes
         for (int i = 0; i < randomInt; i++) {
             crossOverGenes.add(ind1Genes.get(i));
@@ -72,12 +78,16 @@ public class GeneticOperator implements IGeneticOperator {
 
     @Override
     public IIndividual mutation(IIndividual individual) {
-        Random r = new Random();
+        return mutation(individual, new Random().nextInt());
+    }
+
+    public IIndividual mutation(IIndividual individual, int seed) {
+        Random r = new Random(seed);
         int randomInt = r.nextInt(individual.getGenesSize());
         Double prob = r.nextDouble();
         if (prob < mutationRate) {
-            IGene mutatedGene = createRandomGene();
-            individual = createMutatedIndividual(randomInt, mutatedGene, individual);
+            IGene mutatedGene = createRandomGene(r.nextInt());
+            return createMutatedIndividual(randomInt, mutatedGene, individual);
         }
         return individual;
     }
@@ -88,9 +98,11 @@ public class GeneticOperator implements IGeneticOperator {
         return new Individual(newGenes);
     }
 
-    private IGene createRandomGene() {
-        Random r = new Random();
-        int randomValue = r.nextInt(alleleValues.getSize());
-        return new StringGene(alleleValues.get(randomValue));
+    //private IGene createRandomGene() {
+    //    return createRandomGene(new Random().nextInt());
+    //}
+
+    private IGene createRandomGene(int seed) {
+        return new StringGene(alleleValues.getRandom(seed));
     }
 }

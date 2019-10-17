@@ -19,9 +19,13 @@ public class Roulette implements ISelection {
 
     @Override
     public ArrayList<IIndividual> process(ArrayList<IIndividual> individuals, int numberToSelect) {
+        return process(individuals, numberToSelect, new Random().nextInt());
+    }
+
+    public ArrayList<IIndividual> process(ArrayList<IIndividual> individuals, int numberToSelect, int seed) {
         ArrayList<Integer> fits = getFitnessArray(individuals);
         int sum = getFitnessArraySum(fits);
-        Random r = new Random();
+        Random r = new Random(seed);
         int selected;
         ArrayList<IIndividual> selectedIndividuals = new ArrayList<>();
         for (int i = 0; i < numberToSelect; i++) {
