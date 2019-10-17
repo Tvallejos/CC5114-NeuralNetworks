@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -31,6 +32,7 @@ public class GeneticAlgorithmTest {
     @Test
     void constructorTest(){
         assertEquals(5,wordGA.getPopulationSize());
+        assertEquals(5,wordGA.getIndividuals().size());
         assertEquals(10,wordGA.getMaxIter());
     }
 
@@ -44,14 +46,19 @@ public class GeneticAlgorithmTest {
 
     @Test
     void selection() {
-
+        wordGA.selection();
+        assertEquals(2,wordGA.getIndividuals().size());;
     }
 
     @Test
     void reproduction() {
+        wordGA.reproduction();
+        assertEquals(5,wordGA.getIndividuals().size());
     }
 
     @Test
     void run() {
+        wordGA.run();
+        Random r = new Random();
     }
 }
