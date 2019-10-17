@@ -1,9 +1,9 @@
 package GA.Selection;
 
-import GA.Individual;
+import GA.IIndividual;
 
 import java.util.ArrayList;
 
 public interface ISelection {
-    ArrayList<Individual> process(ArrayList<Individual> individuals,int numberToSelect);
+    ArrayList<IIndividual> process(ArrayList<IIndividual> individuals, int numberToSelect);
 }

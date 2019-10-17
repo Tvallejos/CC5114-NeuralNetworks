@@ -1,10 +1,10 @@
 package GA.Functions;
 
-import GA.Individual;
+import GA.IIndividual;
 
 // TODO IFitness documentation
 
 public interface IFitnessFunction {
-    int run(Individual i);
+    int run(IIndividual i);
     boolean solutionFound(int fitness);
 }

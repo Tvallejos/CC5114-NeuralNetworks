@@ -1,8 +1,7 @@
 package GA.Functions;
 
-import GA.Functions.IFitnessFunction;
 import GA.Genes.IGene;
-import GA.Individual;
+import GA.IIndividual;
 
 import java.util.ArrayList;
 
@@ -14,7 +13,7 @@ public class wordFitnessFunction implements IFitnessFunction {
     }
 
     @Override
-    public int run(Individual i) {
+    public int run(IIndividual i) {
         String input = inputToString(i.getGenes());
         return fitnessCalculation(input);
     }

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class IndividualTest {
 
@@ -27,5 +28,14 @@ public class IndividualTest {
         assertEquals("red", stringGenes.get(0).getStringValue());
         assertEquals("red", stringGenes.get(1).getStringValue());
         assertEquals("blue", stringGenes.get(2).getStringValue());
+    }
+
+    @Test
+    void equalTest(){
+        StringGene[] sameGenes = {new StringGene("red"),new StringGene("red"),new StringGene("blue")};
+        ArrayList<IGene> genesList = new ArrayList<>(Arrays.asList(sameGenes));
+        Individual otherIndividual = new Individual(genesList);
+        assertTrue(individual.equals(otherIndividual));
+
     }
 }
