@@ -14,7 +14,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-//TODO Population multi individual test
 public class PopulationTest {
     private Population population;
     private IGeneGenerationFunction geneGenerationFunction;

@@ -35,7 +35,6 @@ public class GeneticAlgorithm implements IGeneticAlgorithm {
         population = new Population(geneGenerator, populationSize);
     }
 
-    //TODO
     @Override
     public void evaluateFitness() {
         fits = new ArrayList<>();
@@ -56,21 +55,18 @@ public class GeneticAlgorithm implements IGeneticAlgorithm {
         return false;
     }
 
-    //TODO
     @Override
     public void selection() {
         ArrayList<IIndividual> selectedIndividuals = selector.process(population.getIndividuals(),populationSize/2);
         population.setIndividuals(selectedIndividuals);
     }
 
-    //TODO
     @Override
     public void reproduction() {
         ArrayList<IIndividual> reproducedIndividuals = reproductor.reproduce(population.getIndividuals(),populationSize-population.getPopulationSize());
         population.setIndividuals(reproducedIndividuals);
     }
 
-    //TODO
     @Override
     public void run() {
         for (int i = 0; i <maxIter ; i++) {
