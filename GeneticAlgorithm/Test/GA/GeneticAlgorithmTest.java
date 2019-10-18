@@ -1,13 +1,12 @@
 package GA;
 
 import GA.Functions.wordFitnessFunction;
-import GA.Functions.wordGeneGenerationFunction;
+import GA.Functions.stdGeneGenerationFunction;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -21,7 +20,7 @@ public class GeneticAlgorithmTest {
     void setUp() {
         wordGA = new GeneticAlgorithm(5,
                 new wordFitnessFunction("cat"),
-                new wordGeneGenerationFunction(
+                new stdGeneGenerationFunction(
                         new Allele(
                                 new ArrayList<>(List.of("a", "b", "c", "d", "t"))),
                         3),

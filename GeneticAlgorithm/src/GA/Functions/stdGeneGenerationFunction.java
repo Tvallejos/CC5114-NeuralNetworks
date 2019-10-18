@@ -9,13 +9,23 @@ import GA.Individual;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class wordGeneGenerationFunction implements IGeneGenerationFunction {
-    private Allele alleleValues;
-    private int chromosomeLength;
+public class stdGeneGenerationFunction implements IGeneGenerationFunction {
+    protected Allele alleleValues;
+    protected int chromosomeLength;
 
-    public wordGeneGenerationFunction(Allele alleleValues, int chromosomeLength) {
+    public stdGeneGenerationFunction(Allele alleleValues, int chromosomeLength) {
         this.alleleValues = alleleValues;
         this.chromosomeLength = chromosomeLength;
+    }
+
+    @Override
+    public String individualToString(IIndividual iIndividual) {
+        ArrayList<IGene> genes = iIndividual.getGenes();
+        String individualAsString = "";
+        for (IGene gene : genes) {
+            individualAsString = individualAsString + gene.getStringValue();
+        }
+        return individualAsString;
     }
 
     @Override
@@ -72,7 +82,7 @@ public class wordGeneGenerationFunction implements IGeneGenerationFunction {
     }
 
     private Individual createRandomIndividual(int seed) {
-        ArrayList<IGene> chromosome = generateGenes(chromosomeLength,seed);
+        ArrayList<IGene> chromosome = this.generateGenes(chromosomeLength,seed);
         return new Individual(chromosome);
     }
 

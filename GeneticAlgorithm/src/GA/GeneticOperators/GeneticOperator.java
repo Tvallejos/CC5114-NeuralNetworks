@@ -1,6 +1,7 @@
 package GA.GeneticOperators;
 
 import GA.Allele;
+import GA.Functions.IGeneGenerationFunction;
 import GA.Genes.IGene;
 import GA.Genes.StringGene;
 import GA.IIndividual;
@@ -21,7 +22,7 @@ public class GeneticOperator implements IGeneticOperator {
     }
 
 
-    public ArrayList<IIndividual> reproduce(ArrayList<IIndividual> individuals, int howManyNew, int seed) {
+    public ArrayList<IIndividual> reproduce(ArrayList<IIndividual> individuals, int howManyNew, int seed, IGeneGenerationFunction geneGenerationFunction) {
         ArrayList<IIndividual> reproducedIndividuals = new ArrayList<>();
         for (IIndividual ind : individuals) {
             reproducedIndividuals.add(ind);
@@ -39,15 +40,15 @@ public class GeneticOperator implements IGeneticOperator {
 
         //Try to mutate all the individuals
         for (int i = 0; i < reproducedIndividuals.size(); i++) {
-            IIndividual mutatedInd = mutation(reproducedIndividuals.get(i));
+            IIndividual mutatedInd = mutation(reproducedIndividuals.get(i), geneGenerationFunction);
             reproducedIndividuals.set(i, mutatedInd);
         }
         return reproducedIndividuals;
     }
 
     @Override
-    public ArrayList<IIndividual> reproduce(ArrayList<IIndividual> individuals, int howManyNew) {
-        return reproduce(individuals, howManyNew, new Random().nextInt());
+    public ArrayList<IIndividual> reproduce(ArrayList<IIndividual> individuals, int howManyNew, IGeneGenerationFunction geneGenerationFunction) {
+        return reproduce(individuals, howManyNew, new Random().nextInt(), geneGenerationFunction);
     }
 
     @Override
@@ -77,16 +78,16 @@ public class GeneticOperator implements IGeneticOperator {
     }
 
     @Override
-    public IIndividual mutation(IIndividual individual) {
-        return mutation(individual, new Random().nextInt());
+    public IIndividual mutation(IIndividual individual, IGeneGenerationFunction geneGenerationFunction) {
+        return mutation(individual, new Random().nextInt(), geneGenerationFunction);
     }
 
-    public IIndividual mutation(IIndividual individual, int seed) {
+    public IIndividual mutation(IIndividual individual, int seed, IGeneGenerationFunction geneGenerationFunction) {
         Random r = new Random(seed);
         int randomInt = r.nextInt(individual.getGenesSize());
         Double prob = r.nextDouble();
         if (prob < mutationRate) {
-            IGene mutatedGene = createRandomGene(r.nextInt());
+            IGene mutatedGene = geneGenerationFunction.generateGene();
             return createMutatedIndividual(randomInt, mutatedGene, individual);
         }
         return individual;

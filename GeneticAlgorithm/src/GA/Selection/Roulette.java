@@ -29,7 +29,7 @@ public class Roulette implements ISelection {
         int selected;
         ArrayList<IIndividual> selectedIndividuals = new ArrayList<>();
         for (int i = 0; i < numberToSelect; i++) {
-            selected = r.nextInt(sum);
+            selected = r.nextInt(sum+1);
             IIndividual selectedIndividual = getSelectedIndividual(fits, individuals, selected);
             selectedIndividuals.add(selectedIndividual);
         }

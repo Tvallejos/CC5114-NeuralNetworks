@@ -1,7 +1,7 @@
 package GA;
 
 import GA.Functions.IGeneGenerationFunction;
-import GA.Functions.wordGeneGenerationFunction;
+import GA.Functions.stdGeneGenerationFunction;
 import GA.Genes.IGene;
 import GA.Genes.StringGene;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,7 +24,7 @@ public class PopulationTest {
         String s = "1 10 20";
         ArrayList<String> abc = new ArrayList<String>(Arrays.asList(s.split(" ")));
         alleleValues = new Allele(abc);
-        IGeneGenerationFunction geneGenerationFunction = new wordGeneGenerationFunction(alleleValues, 5);
+        IGeneGenerationFunction geneGenerationFunction = new stdGeneGenerationFunction(alleleValues, 5);
         population = new Population( geneGenerationFunction,0);
     }
 

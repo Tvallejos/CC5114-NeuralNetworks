@@ -7,6 +7,8 @@ import GA.IIndividual;
 import java.util.ArrayList;
 
 public interface IGeneGenerationFunction {
+    String individualToString(IIndividual ind);
+
     IGene generateGene();
 
     ArrayList<IGene> generateGenes(int numberOfGenes);

@@ -2,7 +2,6 @@ package GA;
 
 import GA.Functions.IFitnessFunction;
 import GA.Functions.IGeneGenerationFunction;
-import GA.Genes.IGene;
 import GA.GeneticOperators.GeneticOperator;
 import GA.GeneticOperators.IGeneticOperator;
 import GA.Selection.ISelection;
@@ -22,6 +21,7 @@ public class GeneticAlgorithm implements IGeneticAlgorithm {
     private ISelection selector;
     private IGeneticOperator reproductor;
     private int fittest;
+
 
     public GeneticAlgorithm(int populationSize, IFitnessFunction fitnessFunction, IGeneGenerationFunction geneGenerator, Double mutationRate, int maxIter, int seed) {
         this.populationSize = populationSize;
@@ -87,7 +87,7 @@ public class GeneticAlgorithm implements IGeneticAlgorithm {
 
     @Override
     public void reproduction() {
-        ArrayList<IIndividual> reproducedIndividuals = reproductor.reproduce(population.getIndividuals(), populationSize - population.getPopulationSize());
+        ArrayList<IIndividual> reproducedIndividuals = reproductor.reproduce(population.getIndividuals(), populationSize - population.getPopulationSize(), geneGenerator);
         population.setIndividuals(reproducedIndividuals);
     }
 
@@ -104,6 +104,7 @@ public class GeneticAlgorithm implements IGeneticAlgorithm {
         }
         System.out.println("max iter reached");
         System.out.println("best fit performance is now " + fittest + " with this individual");
+        evaluateFitness();
         printFittest();
         //iterSol = maxIter;
     }
@@ -129,12 +130,7 @@ public class GeneticAlgorithm implements IGeneticAlgorithm {
     }
 
     private String printIndividual(IIndividual iIndividual) {
-        ArrayList<IGene> genes = iIndividual.getGenes();
-        String individualAsString = "";
-        for (IGene gene : genes) {
-            individualAsString = individualAsString + gene.getStringValue();
-        }
-        return individualAsString;
+        return geneGenerator.individualToString(iIndividual);
     }
     /*
     //used to get iter vs max mean min Data

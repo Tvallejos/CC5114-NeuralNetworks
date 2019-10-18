@@ -1,6 +1,8 @@
 package GA.GeneticOperators;
 
 import GA.Allele;
+import GA.Functions.IGeneGenerationFunction;
+import GA.Functions.stdGeneGenerationFunction;
 import GA.Genes.IGene;
 import GA.Genes.StringGene;
 import GA.IIndividual;
@@ -11,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,6 +20,7 @@ class GeneticOperatorTest {
     private GeneticOperator geneticOperator;
     private ArrayList<IIndividual> individuals;
     private IGene red,green,blue;
+    private IGeneGenerationFunction geneGenerationFunction;
 
     @BeforeEach
     void Setup() {
@@ -28,7 +30,7 @@ class GeneticOperatorTest {
         red = new StringGene("red");
         green = new StringGene("green");
         blue = new StringGene("blue");
-
+        geneGenerationFunction = new stdGeneGenerationFunction(new Allele(allele),3);
         ArrayList<IGene> genes1 = new ArrayList<>(List.of(red, red, red));
         ArrayList<IGene> genes2 = new ArrayList<>(List.of(green,green,green));
         ArrayList<IGene> genes3 = new ArrayList<>(List.of(blue,blue,blue));
@@ -42,7 +44,7 @@ class GeneticOperatorTest {
 
     @Test
     void reproduceSizeTest() {
-        ArrayList<IIndividual> reproducedIndividuals = geneticOperator.reproduce(individuals,5,0);
+        ArrayList<IIndividual> reproducedIndividuals = geneticOperator.reproduce(individuals,5,0,geneGenerationFunction );
         assertEquals(individuals.size()+5,reproducedIndividuals.size());
     }
 
@@ -68,11 +70,8 @@ class GeneticOperatorTest {
     @Test
     void mutation() {
         IIndividual notExpectedToMutate = new Individual(new ArrayList<>(List.of(red,red,red)));
-        IIndividual notMutated = geneticOperator.mutation(individuals.get(0),0);
+        IIndividual notMutated = geneticOperator.mutation(individuals.get(0),0, geneGenerationFunction);
         assertEquals(notExpectedToMutate,notMutated);
 
-        IIndividual expectedIndividual = new Individual(new ArrayList<>(List.of(green,red,red)));
-        IIndividual mutatedIndividual = geneticOperator.mutation(individuals.get(0),1);
-        assertEquals(expectedIndividual,mutatedIndividual);
     }
 }

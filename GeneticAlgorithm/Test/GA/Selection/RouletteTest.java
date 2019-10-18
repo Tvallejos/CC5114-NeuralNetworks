@@ -52,7 +52,7 @@ class RouletteTest {
     void process() {
         ArrayList<IIndividual> expectedSelected = new ArrayList<>(List.of(
                 new Individual(new ArrayList<>(List.of(red, red, red))),
-                new Individual(new ArrayList<>(List.of(red, red, red))))
+                new Individual(new ArrayList<>(List.of(blue, blue, blue))))
         );
         ArrayList<IIndividual> selectedIndividuals = roulette.process(individuals,2,0);
         assertEquals(expectedSelected,selectedIndividuals);

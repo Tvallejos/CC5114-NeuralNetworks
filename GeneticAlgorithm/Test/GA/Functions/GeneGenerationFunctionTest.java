@@ -16,14 +16,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GeneGenerationFunctionTest {
-    private wordGeneGenerationFunction geneGenerationFunction;
+    private stdGeneGenerationFunction geneGenerationFunction;
 
     @BeforeEach
     void Setup() {
         String s = "1 10 20";
         ArrayList<String> abc = new ArrayList<String>(Arrays.asList(s.split(" ")));
         Allele alleleValues = new Allele(abc);
-        geneGenerationFunction = new wordGeneGenerationFunction(alleleValues, 5);
+        geneGenerationFunction = new stdGeneGenerationFunction(alleleValues, 5);
     }
 
     @Test
