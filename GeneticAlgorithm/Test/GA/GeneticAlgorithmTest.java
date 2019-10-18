@@ -18,47 +18,50 @@ public class GeneticAlgorithmTest {
     private GeneticAlgorithm wordGA;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         wordGA = new GeneticAlgorithm(5,
                 new wordFitnessFunction("cat"),
                 new wordGeneGenerationFunction(
                         new Allele(
-                                new ArrayList<>(List.of("a","b","c","d","t"))),
+                                new ArrayList<>(List.of("a", "b", "c", "d", "t"))),
                         3),
                 0.4,
-                10,0);
+                10, 0);
     }
 
     @Test
-    void constructorTest(){
-        assertEquals(5,wordGA.getPopulationSize());
-        assertEquals(5,wordGA.getIndividuals().size());
-        assertEquals(10,wordGA.getMaxIter());
+    void constructorTest() {
+        assertEquals(5, wordGA.getPopulationSize());
+        assertEquals(5, wordGA.getIndividuals().size());
+        assertEquals(10, wordGA.getMaxIter());
     }
 
     @Test
     void evaluateFitness() {
         wordGA.evaluateFitness();
-        ArrayList<Integer> expectedFits = new ArrayList<>(List.of(0,0,1,1,0));
-        assertEquals(expectedFits,wordGA.getFits());
+        ArrayList<Integer> expectedFits = new ArrayList<>(List.of(0, 0, 1, 1, 0));
+        assertEquals(expectedFits, wordGA.getFits());
         assertFalse(wordGA.isSolutionFound());
     }
 
     @Test
     void selection() {
         wordGA.selection();
-        assertEquals(2,wordGA.getIndividuals().size());;
+        assertEquals(2, wordGA.getIndividuals().size());
+        ;
     }
 
     @Test
     void reproduction() {
         wordGA.reproduction();
-        assertEquals(5,wordGA.getIndividuals().size());
+        assertEquals(5, wordGA.getIndividuals().size());
     }
 
-    @Test
+    // TODO assert run test of GA
+    /*@Test
     void run() {
         wordGA.run();
-        Random r = new Random();
     }
+    
+     */
 }

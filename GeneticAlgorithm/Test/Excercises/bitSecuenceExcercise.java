@@ -29,6 +29,6 @@ public class bitSecuenceExcercise {
 
     @Test
     void run(){
-        //uncomment line 99 at GeneticAlgorithm class to see the fitest gene at each iteration
+        //uncomment line 99 at GeneticAlgorithm class to see the fitest individual at each iteration
     }
 }
