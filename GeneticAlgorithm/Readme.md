@@ -49,3 +49,5 @@ if the sum of weights exceeded the maximum capacity fitness score is 0 <br/>
 else sum of the values<br/>
 
 according to this the items on the bag were treated as Pairs weight,value
+
+finnaly, excercises are located at Test/Excercises, just run the main method of the excercise to check.
