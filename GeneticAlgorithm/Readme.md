@@ -38,3 +38,14 @@ doesnt find the solution.
 In the other hand we got that for a population with less than 50 individuals the algorithm is not likely to converge,
 we can say that our best configuration spectrum is with at least 300 individuals and a mutation rate with a maximum value
 of 0.5
+
+## Choosen problem: 0-1-Knapsack
+
+I implemented the representation with the individual as bitmap of items so each gene was either a 0 or 1, with 1 to represent that the item with that index was contained in the knapsack and 0 if it wasn't <br/>
+then the fitness was calculated this way: <br/>
+calculate the sum of the values of the items which were carried by the individual <br/>
+calculate the sum of weights that the individual carried<br/>
+if the sum of weights exceeded the maximum capacity fitness score is 0 <br/>
+else sum of the values<br/>
+
+according to this the items on the bag were treated as Pairs weight,value
