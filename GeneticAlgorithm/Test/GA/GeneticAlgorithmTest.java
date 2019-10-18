@@ -25,14 +25,14 @@ public class GeneticAlgorithmTest {
                                 new ArrayList<>(List.of("a", "b", "c", "d", "t"))),
                         3),
                 0.4,
-                10, 0);
+                100, 0);
     }
 
     @Test
     void constructorTest() {
         assertEquals(5, wordGA.getPopulationSize());
         assertEquals(5, wordGA.getIndividuals().size());
-        assertEquals(10, wordGA.getMaxIter());
+        assertEquals(100, wordGA.getMaxIter());
     }
 
     @Test
@@ -56,11 +56,12 @@ public class GeneticAlgorithmTest {
         assertEquals(5, wordGA.getIndividuals().size());
     }
 
-    // TODO assert run test of GA
-    /*@Test
+
+    @Test
     void run() {
         wordGA.run();
+        assertEquals(3,wordGA.getFittest());
     }
     
-     */
+
 }

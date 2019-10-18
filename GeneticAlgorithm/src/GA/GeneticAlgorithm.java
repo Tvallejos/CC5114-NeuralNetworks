@@ -109,6 +109,10 @@ public class GeneticAlgorithm implements IGeneticAlgorithm {
         //iterSol = maxIter;
     }
 
+    public int getFittest() {
+        return fittest;
+    }
+
     private boolean GAiteration() {
         evaluateFitness();
         updateFittest();
