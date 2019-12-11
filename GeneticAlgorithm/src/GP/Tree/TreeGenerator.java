@@ -15,7 +15,7 @@ public class TreeGenerator implements IGeneGenerationFunction {
     private ArrayList<INode> terminalNodes;
     private int depth;
 
-    public TreeGenerator(ArrayList<INode> innerNodes, ArrayList<INode> terminalNodes,int depth) {
+    public TreeGenerator(ArrayList<INode> innerNodes, ArrayList<INode> terminalNodes, int depth) {
         this.innerNodes = innerNodes;
         this.terminalNodes = terminalNodes;
         this.depth = depth;

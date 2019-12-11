@@ -2,10 +2,11 @@ package GP.Tree;
 
 import java.util.ArrayList;
 
+//TODO SERIALIZE IN ALL INODES
 public interface INode {
-    Double evaluate(Double x, Double y);
+    Double evaluate();
 
-    ITree copy();
+    INode copy();
 
     ArrayList<INode> serialize();
 }
