@@ -1,9 +1,8 @@
 package GP.Tree;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public abstract class AbstractBinaryNode extends AbstractNode{
+public abstract class AbstractBinaryNode extends AbstractNode {
     protected INode left;
     protected INode right;
 
@@ -21,12 +20,30 @@ public abstract class AbstractBinaryNode extends AbstractNode{
     @Override
     public ArrayList<INode> serialize(ArrayList<INode> Acc) {
 
-        ArrayList<INode> toADD = new ArrayList<>(List.of(left, right));
-        Acc.addAll(toADD);
+        Acc.add(this);
         ArrayList<INode> leftSerialized = left.serialize(Acc);
         ArrayList<INode> rightSerialized = right.serialize(leftSerialized);
 
         return rightSerialized;
 
+    }
+
+    private INode getLeft() {
+        return left;
+    }
+
+    private INode getRight() {
+        return right;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof AbstractBinaryNode) {
+            return super.equals(o) &&
+                    left.equals(((AbstractBinaryNode) o).getLeft()) &&
+                    right.equals(((AbstractBinaryNode) o).getRight());
+        }
+
+        return false;
     }
 }

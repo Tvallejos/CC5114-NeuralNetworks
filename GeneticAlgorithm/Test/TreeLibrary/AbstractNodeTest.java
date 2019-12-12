@@ -37,7 +37,12 @@ public abstract class AbstractNodeTest implements INodeTest {
     @Override
     public void copy() {
         assertTrue(theTestedNode.equals(copyAnswer()));
+
+        assertTrue(theTestedNode.equals(theTestedNode.copy()));
+
+
         assertFalse(theTestedNode==copyAnswer());
+        assertFalse(theTestedNode.copy()==copyAnswer());
     }
 
     @Override

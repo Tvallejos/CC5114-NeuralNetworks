@@ -2,7 +2,7 @@ package GP.Tree;
 
 import java.util.ArrayList;
 
-public class TerminalNode extends AbstractNode{
+public class TerminalNode extends AbstractNode {
     private Double value;
 
     public TerminalNode(Double value) {
@@ -25,7 +25,12 @@ public class TerminalNode extends AbstractNode{
         return Acc;
     }
 
-    public Double getValue() {
-        return value;
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof TerminalNode) {
+            return super.equals(o) && value == ((TerminalNode) o).evaluate();
+        }
+
+        return false;
     }
 }
