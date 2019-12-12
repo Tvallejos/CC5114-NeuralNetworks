@@ -2,7 +2,7 @@ package GP.Tree;
 
 import java.util.ArrayList;
 
-public class TerminalNode implements INode {
+public class TerminalNode extends AbstractNode{
     private Double value;
 
     public TerminalNode(Double value) {
@@ -20,7 +20,12 @@ public class TerminalNode implements INode {
     }
 
     @Override
-    public ArrayList<INode> serialize() {
-        return null;
+    public ArrayList<INode> serialize(ArrayList<INode> Acc) {
+        Acc.add(this);
+        return Acc;
+    }
+
+    public Double getValue() {
+        return value;
     }
 }

@@ -8,5 +8,5 @@ public interface INode {
 
     INode copy();
 
-    ArrayList<INode> serialize();
+    ArrayList<INode> serialize(ArrayList<INode> Acc);
 }

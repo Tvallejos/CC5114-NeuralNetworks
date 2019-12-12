@@ -1,8 +1,9 @@
 package GP.Tree;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public abstract class AbstractBinaryNode implements INode {
+public abstract class AbstractBinaryNode extends AbstractNode{
     protected INode left;
     protected INode right;
 
@@ -18,7 +19,14 @@ public abstract class AbstractBinaryNode implements INode {
     public abstract INode copy();
 
     @Override
-    public ArrayList<INode> serialize() {
-        return null;
+    public ArrayList<INode> serialize(ArrayList<INode> Acc) {
+
+        ArrayList<INode> toADD = new ArrayList<>(List.of(left, right));
+        Acc.addAll(toADD);
+        ArrayList<INode> leftSerialized = left.serialize(Acc);
+        ArrayList<INode> rightSerialized = right.serialize(leftSerialized);
+
+        return rightSerialized;
+
     }
 }
