@@ -75,7 +75,7 @@ public class numFindWOlim {
                         )),
                 10,
                 0.2);
-        int maxIter = 5500;
+        int maxIter = 3500;
         ArrayList<Integer> iterSol = new ArrayList<>();
         GeneticAlgorithm numFindGA;
         for (Double mutationRate = 1.0; mutationRate > 0; mutationRate -= 0.1) {
