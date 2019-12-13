@@ -16,4 +16,9 @@ public class AddNode extends AbstractBinaryNode {
     public INode copy() {
         return new AddNode(left.copy(), right.copy());
     }
+
+    @Override
+    protected String myfunc() {
+        return "+";
+    }
 }

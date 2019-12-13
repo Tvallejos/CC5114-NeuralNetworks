@@ -15,4 +15,14 @@ public class MaxNode extends AbstractBinaryNode {
     public INode copy() {
         return new MaxNode(left.copy(), right.copy());
     }
+
+    @Override
+    protected String myfunc() {
+        return "max";
+    }
+
+    @Override
+    public String toString() {
+        return myfunc()+"("+left.toString()+","+right.toString()+")";
+    }
 }

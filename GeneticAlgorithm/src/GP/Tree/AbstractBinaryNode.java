@@ -2,7 +2,7 @@ package GP.Tree;
 
 import java.util.ArrayList;
 
-public abstract class AbstractBinaryNode extends AbstractNode {
+public abstract class AbstractBinaryNode extends AbstractNode implements IBinaryNode {
     protected INode left;
     protected INode right;
 
@@ -37,6 +37,16 @@ public abstract class AbstractBinaryNode extends AbstractNode {
     }
 
     @Override
+    public void setLeft(INode left) {
+        this.left = left;
+    }
+
+    @Override
+    public void setRight(INode right) {
+        this.right = right;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (o instanceof AbstractBinaryNode) {
             return super.equals(o) &&
@@ -46,4 +56,11 @@ public abstract class AbstractBinaryNode extends AbstractNode {
 
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "(" + left.toString() + this.myfunc() + right.toString() + ")";
+    }
+
+    protected abstract String myfunc();
 }

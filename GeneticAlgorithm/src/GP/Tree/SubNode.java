@@ -15,4 +15,9 @@ public class SubNode extends AbstractBinaryNode {
     public INode copy() {
         return new SubNode(left.copy(), right.copy());
     }
+
+    @Override
+    protected String myfunc() {
+        return "-";
+    }
 }

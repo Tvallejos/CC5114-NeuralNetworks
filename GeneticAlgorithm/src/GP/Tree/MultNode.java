@@ -15,4 +15,9 @@ public class MultNode extends AbstractBinaryNode {
     public INode copy() {
         return new MultNode(left.copy(), right.copy());
     }
+
+    @Override
+    protected String myfunc() {
+        return "*";
+    }
 }

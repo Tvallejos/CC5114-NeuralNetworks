@@ -1,5 +1,7 @@
 package GA.Genes;
 
+import GP.Tree.INode;
+
 // TODO Abstract Gene documentation
 public abstract class AbstractGene implements IGene {
 
@@ -15,6 +17,11 @@ public abstract class AbstractGene implements IGene {
 
     public int getIntValue(){
         return Integer.parseInt(alleleValue);
+    }
+
+    @Override
+    public INode getNode() {
+        return null;
     }
 
     @Override

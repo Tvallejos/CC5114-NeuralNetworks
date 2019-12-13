@@ -33,4 +33,9 @@ public class TerminalNode extends AbstractNode {
 
         return false;
     }
+
+    @Override
+    public String toString() {
+        return Double.toString(value);
+    }
 }
