@@ -7,6 +7,9 @@ import GA.GeneticOperators.IGeneticOperator;
 import GA.Selection.ISelection;
 import GA.Selection.Roulette;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -21,6 +24,7 @@ public class GeneticAlgorithm implements IGeneticAlgorithm {
     private ISelection selector;
     private IGeneticOperator reproductor;
     private int fittest;
+    public int iterSol;
 
 
     public GeneticAlgorithm(int populationSize, IFitnessFunction fitnessFunction, IGeneGenerationFunction geneGenerator, Double mutationRate, int maxIter, int seed) {
@@ -31,6 +35,7 @@ public class GeneticAlgorithm implements IGeneticAlgorithm {
         selector = new Roulette(this.fitnessFunction);
         initializePopulation(seed);
         reproductor = new GeneticOperator(mutationRate);
+        iterSol = -1;
 
     }
 
@@ -98,15 +103,16 @@ public class GeneticAlgorithm implements IGeneticAlgorithm {
                 System.out.println("Solution found at " + Integer.toString(i) + " iteration");
                 System.out.println("Solution is ...");
                 printFittest();
-                //iterSol = i;
+                iterSol = i;
                 return;
             }
         }
         System.out.println("max iter reached: " + maxIter);
         System.out.println("best fit performance is now " + fittest + " with this individual");
         evaluateFitness();
+        updateFittest();
         printFittest();
-        //iterSol = maxIter;
+        iterSol = maxIter;
     }
 
     public int getFittest() {
@@ -136,7 +142,7 @@ public class GeneticAlgorithm implements IGeneticAlgorithm {
     private String printIndividual(IIndividual iIndividual) {
         return geneGenerator.individualToString(iIndividual);
     }
-    /*
+
     //used to get iter vs max mean min Data
     public void runSavingFitness() {
         ArrayList<String> iter = new ArrayList<>();
@@ -163,7 +169,7 @@ public class GeneticAlgorithm implements IGeneticAlgorithm {
             //fitnessMean
             //fitnessMinimum
 
-            File logFile = new File("test" + ".txt");
+            File logFile = new File("fitnessdata" + ".txt");
             BufferedWriter writer = new BufferedWriter(new FileWriter(logFile));
 
             String iterationLine = getAsString(iter);
@@ -191,6 +197,7 @@ public class GeneticAlgorithm implements IGeneticAlgorithm {
         return sb.toString();
     }
 
+
     private String getMax() {
         return Integer.toString(fittest);
     }
@@ -206,7 +213,7 @@ public class GeneticAlgorithm implements IGeneticAlgorithm {
     private String getMin() {
         return Integer.toString(Collections.min(fits));
     }
-     */
+
 
 
 }

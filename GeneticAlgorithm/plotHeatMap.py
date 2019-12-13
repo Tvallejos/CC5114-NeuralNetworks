@@ -55,7 +55,7 @@ def plotHeatMap(data):
     fig.tight_layout()
     plt.show()
 
-File = open("./heatMapData.txt",'r')
+File = open("./heatMapNumFindData.txt",'r')
 lines = File.readlines()
 plotHeatMap(lines)
 

@@ -44,13 +44,13 @@ def plotFitness(data):
     ax.plot(iterations,mins,'ro', label = 'Minimum fitness')
     ax.legend(loc = 'upper center',shadow = True, fontsize='large')
     #ax..axis([0,300,0,10])
-    plt.axis([0,300,0,13])
+    plt.axis([0,300,0,65000])
     plt.xlabel('Iteration number')
     plt.ylabel('Fitness score')
     plt.title('Fitness vs Iteration')
     plt.show()
 
-File = open("./wordFindStatistics.txt",'r')
+File = open("./fitnessdata.txt",'r')
 lines = File.readlines()
 plotFitness(lines)
 
