@@ -102,7 +102,7 @@ public class GeneticAlgorithm implements IGeneticAlgorithm {
                 return;
             }
         }
-        System.out.println("max iter reached");
+        System.out.println("max iter reached: " + maxIter);
         System.out.println("best fit performance is now " + fittest + " with this individual");
         evaluateFitness();
         printFittest();

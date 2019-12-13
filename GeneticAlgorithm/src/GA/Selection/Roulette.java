@@ -24,12 +24,17 @@ public class Roulette implements ISelection {
 
     public ArrayList<IIndividual> process(ArrayList<IIndividual> individuals, int numberToSelect, int seed) {
         ArrayList<Integer> fits = getFitnessArray(individuals);
+
         int sum = getFitnessArraySum(fits);
+        if (sum < 0) {
+            sum = 0;
+        }
         Random r = new Random(seed);
         int selected;
         ArrayList<IIndividual> selectedIndividuals = new ArrayList<>();
         for (int i = 0; i < numberToSelect; i++) {
-            selected = r.nextInt(sum+1);
+
+            selected = r.nextInt(sum + 1);
             IIndividual selectedIndividual = getSelectedIndividual(fits, individuals, selected);
             selectedIndividuals.add(selectedIndividual);
         }
@@ -59,7 +64,10 @@ public class Roulette implements ISelection {
     private int getFitnessArraySum(ArrayList<Integer> fitnessArray) {
         int sum = 0;
         for (Integer num : fitnessArray) {
-            sum += num;
+            if (num >= 0) {
+                sum += num;
+            }
+
         }
         return sum;
     }

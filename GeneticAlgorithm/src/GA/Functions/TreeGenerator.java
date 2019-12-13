@@ -1,4 +1,4 @@
-package GP.Tree;
+package GA.Functions;
 
 import GA.Allele;
 import GA.Functions.AbstractGeneGenerationFunction;
@@ -6,6 +6,8 @@ import GA.Genes.IGene;
 import GA.Genes.NodeGene;
 import GA.IIndividual;
 import GA.Individual;
+import GP.Tree.IBinaryNode;
+import GP.Tree.INode;
 
 import java.util.ArrayList;
 import java.util.List;
