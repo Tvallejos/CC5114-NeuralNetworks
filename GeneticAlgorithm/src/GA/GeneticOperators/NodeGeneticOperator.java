@@ -21,7 +21,6 @@ public class NodeGeneticOperator extends GeneticOperator {
     @Override
     public IIndividual crossOver(IIndividual ind1, IIndividual ind2, int seed) {
         assert (ind1.getGenesSize() == ind2.getGenesSize());
-        Random r = new Random(seed);
 
         IGene ind1Gene = ind1.getGenes().get(0);
         IGene ind2Gene = ind2.getGenes().get(0);
@@ -37,9 +36,9 @@ public class NodeGeneticOperator extends GeneticOperator {
     }
 
     private void replace(INode p1, INode p2) {
-        if(p1 == p1.getFather().getLeft()){// soy el hijo izquierdo
+        if (p1 == p1.getFather().getLeft()) {// soy el hijo izquierdo
             p1.getFather().setLeft(p2);
-        }else {
+        } else {
             p1.getFather().setRight(p2);
         }
     }
@@ -50,12 +49,14 @@ public class NodeGeneticOperator extends GeneticOperator {
 
     @Override
     public IIndividual mutation(IIndividual individual, int seed, IGeneGenerationFunction geneGenerationFunction) {
-        Random r = new Random(seed);
-        int randomInt = r.nextInt(individual.getGenesSize());
-        Double prob = r.nextDouble();
+        Double prob = new Random(seed).nextDouble();
         if (prob < mutationRate) {
-            IGene mutatedGene = geneGenerationFunction.generateGene();
-            return createMutatedIndividual(randomInt, mutatedGene, individual);
+            INode new_element = individual.getGenes().get(0).getNode().copy(null);
+            INode p1 = chooseRandomSubTree(new_element.serialize(new ArrayList<>()));
+            INode p2 = geneGenerationFunction.generateGene().getNode();
+            p2.setFather(p1.getFather());
+            replace(p1, p2);
+            return new Individual(new ArrayList<>(List.of(new NodeGene(new_element))));
         }
         return individual;
     }
