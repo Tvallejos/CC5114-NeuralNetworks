@@ -3,7 +3,6 @@ package GA.GeneticOperators;
 import GA.Allele;
 import GA.Functions.IGeneGenerationFunction;
 import GA.Genes.IGene;
-import GA.Genes.StringGene;
 import GA.IIndividual;
 import GA.Individual;
 
@@ -13,12 +12,10 @@ import java.util.Random;
 // TODO test implementation of genetic operations
 public class GeneticOperator implements IGeneticOperator {
 
-    private Allele alleleValues;
-    private Double mutationRate;
+    protected Double mutationRate;
 
-    public GeneticOperator(Double mutationRate, Allele alleleValues) {
+    public GeneticOperator(Double mutationRate) {
         this.mutationRate = mutationRate;
-        this.alleleValues = alleleValues;
     }
 
 
@@ -93,17 +90,9 @@ public class GeneticOperator implements IGeneticOperator {
         return individual;
     }
 
-    private IIndividual createMutatedIndividual(int geneIndex, IGene mutatedGene, IIndividual individual) {
+    protected IIndividual createMutatedIndividual(int geneIndex, IGene mutatedGene, IIndividual individual) {
         ArrayList<IGene> newGenes = individual.getGenes();
         newGenes.set(geneIndex, mutatedGene);
         return new Individual(newGenes);
-    }
-
-    //private IGene createRandomGene() {
-    //    return createRandomGene(new Random().nextInt());
-    //}
-
-    private IGene createRandomGene(int seed) {
-        return new StringGene(alleleValues.getRandom(seed));
     }
 }

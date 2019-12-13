@@ -6,14 +6,18 @@ public class MaxNode extends AbstractBinaryNode {
         super(left, right);
     }
 
+    public MaxNode(INode left,INode right, IBinaryNode father){
+        super(left, right, father);
+    }
     @Override
     public Double evaluate() {
         return Math.max(left.evaluate(), right.evaluate());
     }
 
     @Override
-    public INode copy() {
-        return new MaxNode(left.copy(), right.copy());
+    public INode copy(IBinaryNode father) {
+        IBinaryNode CopyNode = new MaxNode(null, null, father);
+        return createCopy(CopyNode, left, right);
     }
 
     @Override

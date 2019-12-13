@@ -30,7 +30,7 @@ public class GeneticAlgorithm implements IGeneticAlgorithm {
         this.maxIter = maxIter;
         selector = new Roulette(this.fitnessFunction);
         initializePopulation(seed);
-        reproductor = new GeneticOperator(mutationRate, population.getAlleleValues());
+        reproductor = new GeneticOperator(mutationRate);
 
     }
 

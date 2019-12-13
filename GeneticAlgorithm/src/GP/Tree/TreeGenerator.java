@@ -2,7 +2,6 @@ package GP.Tree;
 
 import GA.Allele;
 import GA.Functions.AbstractGeneGenerationFunction;
-import GA.Functions.IGeneGenerationFunction;
 import GA.Genes.IGene;
 import GA.Genes.NodeGene;
 import GA.IIndividual;
@@ -11,8 +10,6 @@ import GA.Individual;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-//TODO fill IGeneGenerationFunction methods on TreeGenerator
 
 public class TreeGenerator extends AbstractGeneGenerationFunction {
     private ArrayList<IBinaryNode> innerNodes;
@@ -33,7 +30,7 @@ public class TreeGenerator extends AbstractGeneGenerationFunction {
 
     @Override
     public IGene generateGene() {
-        return NodeToGene(create_rec_tree(depth));
+        return NodeToGene(create_rec_tree(new Random().nextInt(depth),null));
     }
 
     private IGene NodeToGene(INode rec_tree) {
@@ -41,30 +38,32 @@ public class TreeGenerator extends AbstractGeneGenerationFunction {
     }
 
 
-    public IBinaryNode getRandomFunction(ArrayList<IBinaryNode> list) {
+    private IBinaryNode getRandomFunction(ArrayList<IBinaryNode> list) {
         Random rand = new Random();
         return list.get(rand.nextInt(list.size()));
     }
 
-    private INode create_rec_tree(int aDepth) {
+    private INode create_rec_tree(int aDepth,IBinaryNode father) {
 
         // si `depth` es mayor a 0, nos toca crear un sub-arbol
         if (aDepth > 0) {
             //si estamos en la prob de terminar entonces retornamos un terminal
             if (new Random().nextDouble() < prob) {
-                return getRandomTerminal(terminalNodes).copy();
+                return getRandomTerminal(terminalNodes).copy(father);
             } else {
                 //si no escogemos un funcion aleatoriamente
                 IBinaryNode choosenFunc = getRandomFunction(innerNodes);
-                INode left = create_rec_tree(aDepth - 1);
-                INode right = create_rec_tree(aDepth - 1);
+                INode left = create_rec_tree(aDepth - 1,choosenFunc);
+                INode right = create_rec_tree(aDepth - 1,choosenFunc);
+                left.setFather(choosenFunc);
+                right.setFather(choosenFunc);
                 choosenFunc.setLeft(left);
                 choosenFunc.setRight(right);
-                return choosenFunc.copy();
+                return choosenFunc.copy(null);
             }
 
         } else {
-            return getRandomTerminal(terminalNodes).copy();
+            return getRandomTerminal(terminalNodes).copy(father);
         }
     }
 

@@ -6,14 +6,19 @@ public class MultNode extends AbstractBinaryNode {
         super(left, right);
     }
 
+    public MultNode(INode left, INode right, IBinaryNode father) {
+        super(left, right, father);
+    }
+
     @Override
     public Double evaluate() {
         return left.evaluate() * right.evaluate();
     }
 
     @Override
-    public INode copy() {
-        return new MultNode(left.copy(), right.copy());
+    public INode copy(IBinaryNode father) {
+        IBinaryNode CopyNode = new MultNode(null, null, father);
+        return createCopy(CopyNode, left, right);
     }
 
     @Override

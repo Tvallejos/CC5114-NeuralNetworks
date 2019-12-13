@@ -7,6 +7,11 @@ public abstract class AbstractBinaryNode extends AbstractNode implements IBinary
     protected INode right;
 
     public AbstractBinaryNode(INode left, INode right) {
+        this(left, right, null);
+    }
+
+    public AbstractBinaryNode(INode left, INode right, IBinaryNode father) {
+        super(father);
         this.left = left;
         this.right = right;
     }
@@ -15,7 +20,7 @@ public abstract class AbstractBinaryNode extends AbstractNode implements IBinary
     public abstract Double evaluate();
 
     @Override
-    public abstract INode copy();
+    public abstract INode copy(IBinaryNode father);
 
     @Override
     public ArrayList<INode> serialize(ArrayList<INode> Acc) {
@@ -28,11 +33,11 @@ public abstract class AbstractBinaryNode extends AbstractNode implements IBinary
 
     }
 
-    private INode getLeft() {
+    public INode getLeft() {
         return left;
     }
 
-    private INode getRight() {
+    public INode getRight() {
         return right;
     }
 
@@ -63,4 +68,10 @@ public abstract class AbstractBinaryNode extends AbstractNode implements IBinary
     }
 
     protected abstract String myfunc();
+
+    protected INode createCopy(IBinaryNode copyNode, INode left, INode right) {
+        copyNode.setLeft(left.copy(copyNode));
+        copyNode.setRight(right.copy(copyNode));
+        return copyNode;
+    }
 }

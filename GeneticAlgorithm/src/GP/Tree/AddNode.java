@@ -7,15 +7,21 @@ public class AddNode extends AbstractBinaryNode {
         super(left, right);
     }
 
+    public AddNode(INode left, INode right, IBinaryNode father) {
+        super(left, right, father);
+    }
+
     @Override
     public Double evaluate() {
         return left.evaluate() + right.evaluate();
     }
 
     @Override
-    public INode copy() {
-        return new AddNode(left.copy(), right.copy());
+    public INode copy(IBinaryNode father) {
+        IBinaryNode CopyNode = new AddNode(null, null, father);
+        return createCopy(CopyNode, left, right);
     }
+
 
     @Override
     protected String myfunc() {

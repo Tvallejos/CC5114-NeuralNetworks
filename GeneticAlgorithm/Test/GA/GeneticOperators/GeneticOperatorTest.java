@@ -25,7 +25,7 @@ class GeneticOperatorTest {
     @BeforeEach
     void Setup() {
         ArrayList<String> allele = new ArrayList<>(Arrays.asList("red", "green", "blue"));
-        geneticOperator = new GeneticOperator(0.5, new Allele(allele));
+        geneticOperator = new GeneticOperator(0.5);
 
         red = new StringGene("red");
         green = new StringGene("green");

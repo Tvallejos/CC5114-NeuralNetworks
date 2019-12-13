@@ -6,6 +6,11 @@ public class TerminalNode extends AbstractNode {
     private Double value;
 
     public TerminalNode(Double value) {
+        this(value, null);
+    }
+
+    public TerminalNode(Double value, IBinaryNode father) {
+        super(father);
         this.value = value;
     }
 
@@ -15,8 +20,8 @@ public class TerminalNode extends AbstractNode {
     }
 
     @Override
-    public INode copy() {
-        return new TerminalNode(value);
+    public INode copy(IBinaryNode father) {
+        return new TerminalNode(value, father);
     }
 
     @Override
