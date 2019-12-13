@@ -1,17 +1,20 @@
 package GP.Tree;
 
 import GA.Allele;
+import GA.Functions.AbstractGeneGenerationFunction;
 import GA.Functions.IGeneGenerationFunction;
 import GA.Genes.IGene;
 import GA.Genes.NodeGene;
 import GA.IIndividual;
+import GA.Individual;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 //TODO fill IGeneGenerationFunction methods on TreeGenerator
 
-public class TreeGenerator implements IGeneGenerationFunction {
+public class TreeGenerator extends AbstractGeneGenerationFunction {
     private ArrayList<IBinaryNode> innerNodes;
     private ArrayList<INode> terminalNodes;
     private int depth;
@@ -27,12 +30,6 @@ public class TreeGenerator implements IGeneGenerationFunction {
     public TreeGenerator(ArrayList<IBinaryNode> innerNodes, ArrayList<INode> terminalNodes, int depth) {
         this(innerNodes, terminalNodes, depth, new Random().nextDouble());
     }
-
-    @Override
-    public String individualToString(IIndividual ind) {
-        return null;
-    }
-
 
     @Override
     public IGene generateGene() {
@@ -78,12 +75,16 @@ public class TreeGenerator implements IGeneGenerationFunction {
 
     @Override
     public ArrayList<IGene> generateGenes(int numberOfGenes) {
-        return null;
+        ArrayList<IGene> genes = new ArrayList<>();
+        for (int i = 0; i < numberOfGenes; i++) {
+            genes.add(generateGene());
+        }
+        return genes;
     }
 
     @Override
-    public ArrayList<IIndividual> initializePopulation(int populationSize) {
-        return null;
+    public String individualToString(IIndividual ind) {
+        return ind.getGenes().get(0).getStringValue();
     }
 
     @Override
@@ -93,11 +94,12 @@ public class TreeGenerator implements IGeneGenerationFunction {
 
     @Override
     public int getChomosomeLength() {
-        return 0;
+        return 1;
     }
 
+
     @Override
-    public ArrayList<IIndividual> initializePopulation(int populationSize, int seed) {
-        return null;
+    protected IIndividual createRandomIndividual(int seed) {
+        return new Individual(new ArrayList<>(List.of(generateGene())));
     }
 }

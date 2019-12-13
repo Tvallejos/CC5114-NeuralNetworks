@@ -9,7 +9,7 @@ import GA.Individual;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class stdGeneGenerationFunction implements IGeneGenerationFunction {
+public class stdGeneGenerationFunction extends AbstractGeneGenerationFunction {
     protected Allele alleleValues;
     protected int chromosomeLength;
 
@@ -57,21 +57,6 @@ public class stdGeneGenerationFunction implements IGeneGenerationFunction {
     }
 
     @Override
-    public ArrayList<IIndividual> initializePopulation(int populationSize, int seed) {
-        Random r = new Random(seed);
-        ArrayList individuals = new ArrayList();
-        for (int i = 0; i < populationSize; i++) {
-            Individual newIndividual = createRandomIndividual(r.nextInt());
-            individuals.add(newIndividual);
-        }
-        return individuals;
-    }
-
-    public ArrayList<IIndividual> initializePopulation(int populationSize) {
-        return initializePopulation(new Random().nextInt(), populationSize);
-    }
-
-    @Override
     public Allele getAlleleValues() {
         return alleleValues;
     }
@@ -81,7 +66,8 @@ public class stdGeneGenerationFunction implements IGeneGenerationFunction {
         return chromosomeLength;
     }
 
-    private Individual createRandomIndividual(int seed) {
+
+    protected Individual createRandomIndividual(int seed) {
         ArrayList<IGene> chromosome = this.generateGenes(chromosomeLength,seed);
         return new Individual(chromosome);
     }
