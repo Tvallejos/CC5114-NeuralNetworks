@@ -51,3 +51,24 @@ else sum of the values<br/>
 according to this the items on the bag were treated as Pairs weight,value
 
 finnaly, excercises are located at Test/Excercises, just run the main method of the excercise to check.
+
+# Homework 3
+## Code
+these parts of the code can be checked at:
+* [Tree Library](https://github.com/Tvallejos/CC5114-NeuralNetworks/tree/master/GeneticAlgorithm/src/GP/Tree)
+* [Random Tree Generator](https://github.com/Tvallejos/CC5114-NeuralNetworks/tree/master/GeneticAlgorithm/src/GA/Functions)
+* [Genetic operators](https://github.com/Tvallejos/CC5114-NeuralNetworks/blob/master/GeneticAlgorithm/src/GA/GeneticOperators/NodeGeneticOperator.java)
+
+## Excercises
+1. Find an AST which evaluates to a number by a given set of functions and terminals, the AST can be constructed without limit of repetition.
+
+For the following graph the number to find was 65346 set of function was {+,-,*,max(·)} and terminals were {25,7,8,100,4,2}
+
+![alt text](https://github.com/Tvallejos/CC5114-NeuralNetworks/blob/master/GeneticAlgorithm/FitnessVsIterNumFind.png "Fitness over generation")
+
+2. fitness
+Program a fitness function which punishes bigger trees gets too big
+
+* these part of the code can be found at:
+
+## Analysis
