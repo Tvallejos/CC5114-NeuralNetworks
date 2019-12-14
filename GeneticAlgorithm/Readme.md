@@ -89,6 +89,7 @@ CC5114-NeuralNetworks/GeneticAlgorithm/Test/Excercises/
 
 
 *not implemented*
+
 5.0 Symbolic regression
 just create a fitness function it must eval the node with different envs and check if its less than a rational delta, if it is you win.
 
