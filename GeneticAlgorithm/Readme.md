@@ -67,8 +67,13 @@ For the following graph the number to find was 65346 set of function was {+,-,*,
 ![alt text](https://github.com/Tvallejos/CC5114-NeuralNetworks/blob/master/GeneticAlgorithm/FitnessVsIterNumFind.png "Fitness over generation")
 
 2. fitness
-Program a fitness function which punishes bigger trees gets too big
+Program a fitness function which punishes bigger trees gets too big, my solution was to substract from the fitness score the cuadratic value of the depth so as the tree gets bigger it gets lesser fitness.
 
 * these part of the code can be found at:
+[Punish Depth](https://github.com/Tvallejos/CC5114-NeuralNetworks/blob/master/GeneticAlgorithm/src/GA/Functions/numberFindingPlusPunishFitnessFunction.java)
 
 ## Analysis
+
+![alt text](https://github.com/Tvallejos/CC5114-NeuralNetworks/blob/master/GeneticAlgorithm/HeatMapNumFind.png "HeatMap GP")
+from this graph there is nothing we can conclude, here isn't perceptible a pattern as it was in the GA.
+
