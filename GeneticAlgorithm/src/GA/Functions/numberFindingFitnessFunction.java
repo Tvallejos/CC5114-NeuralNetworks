@@ -4,7 +4,7 @@ import GA.IIndividual;
 import GP.Tree.INode;
 
 public class numberFindingFitnessFunction implements IFitnessFunction {
-    private int secretNumber;
+    protected int secretNumber;
 
     public numberFindingFitnessFunction(int secretNumber) {
         this.secretNumber = secretNumber;

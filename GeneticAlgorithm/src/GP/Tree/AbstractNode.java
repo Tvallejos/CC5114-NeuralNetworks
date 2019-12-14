@@ -25,4 +25,9 @@ public abstract class AbstractNode implements INode {
     public void setFather(IBinaryNode father) {
         this.father = father;
     }
+
+    @Override
+    public int getDepth() {
+        return 1;
+    }
 }

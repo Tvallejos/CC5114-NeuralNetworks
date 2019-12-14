@@ -22,6 +22,15 @@ public abstract class AbstractBinaryNode extends AbstractNode implements IBinary
     @Override
     public abstract INode copy(IBinaryNode father);
 
+
+    @Override
+    public IBinaryNode getFather() {
+        if (father == null) {
+            return this;
+        }
+        return super.getFather();
+    }
+
     @Override
     public ArrayList<INode> serialize(ArrayList<INode> Acc) {
 
@@ -73,5 +82,10 @@ public abstract class AbstractBinaryNode extends AbstractNode implements IBinary
         copyNode.setLeft(left.copy(copyNode));
         copyNode.setRight(right.copy(copyNode));
         return copyNode;
+    }
+
+    @Override
+    public int getDepth() {
+        return 1 + Math.max(left.getDepth(), right.getDepth());
     }
 }

@@ -3,6 +3,7 @@ package Excercises;
 import GA.Allele;
 import GA.Functions.*;
 import GA.GeneticAlgorithm;
+import GA.GeneticOperators.NodeGeneticOperator;
 import GA.IGeneticAlgorithm;
 import GP.Tree.*;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,7 @@ public class numFindWOlim {
     public static void main(String[] args) {
 
         GeneticAlgorithm numFindGA = new GeneticAlgorithm(300,
-                new numberFindingFitnessFunction(65346),
+                new numberFindingFitnessFunction(65348),
                 new TreeGenerator(
                         //allowed func
                         new ArrayList<IBinaryNode>(
@@ -44,11 +45,11 @@ public class numFindWOlim {
                 0.2,
                 1000, 0);
 
-        numFindGA.runSavingFitness();
+        numFindGA.run();
 
     }
 
-
+/*
     @Test
     void heatMapData() {
 
@@ -114,6 +115,6 @@ public class numFindWOlim {
             e.printStackTrace();
         }
     }
-
+*/
 
 }

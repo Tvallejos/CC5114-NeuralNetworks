@@ -12,4 +12,6 @@ public interface INode {
     IBinaryNode getFather();
 
     void setFather(IBinaryNode father);
+
+    int getDepth();
 }

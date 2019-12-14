@@ -26,17 +26,20 @@ public class GeneticAlgorithm implements IGeneticAlgorithm {
     private int fittest;
     public int iterSol;
 
-
-    public GeneticAlgorithm(int populationSize, IFitnessFunction fitnessFunction, IGeneGenerationFunction geneGenerator, Double mutationRate, int maxIter, int seed) {
+    public GeneticAlgorithm(int populationSize, IFitnessFunction fitnessFunction, IGeneGenerationFunction geneGenerator, Double mutationRate, IGeneticOperator reproductor, int maxIter, int seed) {
         this.populationSize = populationSize;
         this.fitnessFunction = fitnessFunction;
         this.geneGenerator = geneGenerator;
         this.maxIter = maxIter;
         selector = new Roulette(this.fitnessFunction);
         initializePopulation(seed);
-        reproductor = new GeneticOperator(mutationRate);
+        this.reproductor = reproductor;
         iterSol = -1;
+    }
 
+
+    public GeneticAlgorithm(int populationSize, IFitnessFunction fitnessFunction, IGeneGenerationFunction geneGenerator, Double mutationRate, int maxIter, int seed) {
+        this(populationSize, fitnessFunction, geneGenerator, mutationRate, new GeneticOperator(mutationRate), maxIter, seed);
     }
 
     public GeneticAlgorithm(int populationSize, IFitnessFunction fitnessFunction, IGeneGenerationFunction geneGenerationFunction, Double mutationRate, int maxIter) {
@@ -150,7 +153,7 @@ public class GeneticAlgorithm implements IGeneticAlgorithm {
         ArrayList<String> Mean = new ArrayList<>();
         ArrayList<String> Min = new ArrayList<>();
         for (int i = 0; i < maxIter; i++) {
-            if(GAiteration()){
+            if (GAiteration()) {
                 iter.add(Integer.toString(i));
                 Max.add(getMax());
                 Mean.add(getMean());
@@ -213,7 +216,6 @@ public class GeneticAlgorithm implements IGeneticAlgorithm {
     private String getMin() {
         return Integer.toString(Collections.min(fits));
     }
-
 
 
 }
