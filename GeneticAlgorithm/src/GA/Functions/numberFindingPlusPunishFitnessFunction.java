@@ -14,7 +14,7 @@ public class numberFindingPlusPunishFitnessFunction extends numberFindingFitness
     @Override
     public int run(IIndividual i) {
         int depth = i.getGenes().get(0).getNode().getDepth();
-        int depthPunishment = depth*depth;
-        return super.run(i) - depthPunishment;
+        int depthPunishment = depth * depth;
+        return Math.max(super.run(i) - depthPunishment, 0);
     }
 }
