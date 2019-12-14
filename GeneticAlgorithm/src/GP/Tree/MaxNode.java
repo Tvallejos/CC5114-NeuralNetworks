@@ -1,5 +1,7 @@
 package GP.Tree;
 
+import java.util.HashMap;
+
 public class MaxNode extends AbstractBinaryNode {
 
     public MaxNode(INode left, INode right) {
@@ -10,8 +12,8 @@ public class MaxNode extends AbstractBinaryNode {
         super(left, right, father);
     }
     @Override
-    public Double evaluate() {
-        return Math.max(left.evaluate(), right.evaluate());
+    public Double evaluate(HashMap<String, Double> env) {
+        return Math.max(left.evaluate(env), right.evaluate(env));
     }
 
     @Override

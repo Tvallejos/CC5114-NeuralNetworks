@@ -1,19 +1,19 @@
 package Excercises;
 
 import GA.Functions.TreeGenerator;
-import GA.Functions.numberFindingFitnessFunction;
 import GA.Functions.numberFindingNoRep;
 import GA.GeneticAlgorithm;
 import GP.Tree.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class noRepetition {
     public static void main(String[] args) {
 
         GeneticAlgorithm numFindGA = new GeneticAlgorithm(300,
-                new numberFindingNoRep(65348),
+                new numberFindingNoRep(65348, new HashMap<>()),
                 new TreeGenerator(
                         //allowed func
                         new ArrayList<IBinaryNode>(

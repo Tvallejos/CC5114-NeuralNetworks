@@ -1,9 +1,10 @@
 package GP.Tree;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public interface INode {
-    Double evaluate();
+    Double evaluate(HashMap<String, Double> env);
 
     INode copy(IBinaryNode father);
 

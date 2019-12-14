@@ -32,7 +32,7 @@ public class TreeGenerator extends AbstractGeneGenerationFunction {
 
     @Override
     public IGene generateGene() {
-        return NodeToGene(create_rec_tree(new Random().nextInt(depth),null));
+        return NodeToGene(create_rec_tree(new Random().nextInt(depth), null));
     }
 
     private IGene NodeToGene(INode rec_tree) {
@@ -45,7 +45,7 @@ public class TreeGenerator extends AbstractGeneGenerationFunction {
         return list.get(rand.nextInt(list.size()));
     }
 
-    private INode create_rec_tree(int aDepth,IBinaryNode father) {
+    private INode create_rec_tree(int aDepth, IBinaryNode father) {
 
         // si `depth` es mayor a 0, nos toca crear un sub-arbol
         if (aDepth > 0) {
@@ -55,8 +55,8 @@ public class TreeGenerator extends AbstractGeneGenerationFunction {
             } else {
                 //si no escogemos un funcion aleatoriamente
                 IBinaryNode choosenFunc = getRandomFunction(innerNodes);
-                INode left = create_rec_tree(aDepth - 1,choosenFunc);
-                INode right = create_rec_tree(aDepth - 1,choosenFunc);
+                INode left = create_rec_tree(aDepth - 1, choosenFunc);
+                INode right = create_rec_tree(aDepth - 1, choosenFunc);
                 left.setFather(choosenFunc);
                 right.setFather(choosenFunc);
                 choosenFunc.setLeft(left);
@@ -85,7 +85,7 @@ public class TreeGenerator extends AbstractGeneGenerationFunction {
 
     @Override
     public String individualToString(IIndividual ind) {
-        return ind.getGenes().get(0).getStringValue();
+        return ind.getGenes().get(0).getNode().toString();
     }
 
     @Override

@@ -1,19 +1,19 @@
 package Excercises;
 
 import GA.Functions.TreeGenerator;
-import GA.Functions.numberFindingFitnessFunction;
 import GA.Functions.numberFindingPlusPunishFitnessFunction;
 import GA.GeneticAlgorithm;
 import GP.Tree.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class punishDepth {
     public static void main(String[] args) {
 
         GeneticAlgorithm numFindGA = new GeneticAlgorithm(300,
-                new numberFindingPlusPunishFitnessFunction(65348),
+                new numberFindingPlusPunishFitnessFunction(65348,new HashMap()),
                 new TreeGenerator(
                         //allowed func
                         new ArrayList<IBinaryNode>(

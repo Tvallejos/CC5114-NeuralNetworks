@@ -1,13 +1,14 @@
 package GA.Functions;
 
 import GA.IIndividual;
-import GP.Tree.INode;
+
+import java.util.HashMap;
 
 public class numberFindingPlusPunishFitnessFunction extends numberFindingFitnessFunction {
 
 
-    public numberFindingPlusPunishFitnessFunction(int secretNumber) {
-        super(secretNumber);
+    public numberFindingPlusPunishFitnessFunction(int secretNumber, HashMap env) {
+        super(secretNumber, env);
     }
 
 

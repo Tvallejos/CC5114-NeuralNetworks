@@ -1,5 +1,7 @@
 package GP.Tree;
 
+import java.util.HashMap;
+
 public class MultNode extends AbstractBinaryNode {
 
     public MultNode(INode left, INode right) {
@@ -11,8 +13,8 @@ public class MultNode extends AbstractBinaryNode {
     }
 
     @Override
-    public Double evaluate() {
-        return left.evaluate() * right.evaluate();
+    public Double evaluate(HashMap<String, Double> env) {
+        return left.evaluate(env) * right.evaluate(env);
     }
 
     @Override

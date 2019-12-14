@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -27,7 +28,7 @@ public abstract class AbstractNodeTest implements INodeTest {
     @Test
     @Override
     public void evaluate() {
-        assertEquals(evaluateAnswer(), theTestedNode.evaluate());
+        assertEquals(evaluateAnswer(), theTestedNode.evaluate(new HashMap<>()));
     }
 
     @Override

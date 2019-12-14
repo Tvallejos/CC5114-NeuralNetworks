@@ -1,5 +1,7 @@
 package GP.Tree;
 
+import java.util.HashMap;
+
 public class MinNode extends AbstractBinaryNode {
 
     public MinNode(INode left, INode right) {
@@ -9,8 +11,8 @@ public class MinNode extends AbstractBinaryNode {
         super(left, right, father);
     }
     @Override
-    public Double evaluate() {
-        return Math.min(left.evaluate(), right.evaluate());
+    public Double evaluate(HashMap<String, Double> env) {
+        return Math.min(left.evaluate(env), right.evaluate(env));
     }
 
     @Override

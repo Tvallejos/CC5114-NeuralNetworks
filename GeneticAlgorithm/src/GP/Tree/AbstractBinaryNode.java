@@ -1,6 +1,7 @@
 package GP.Tree;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public abstract class AbstractBinaryNode extends AbstractNode implements IBinaryNode {
     protected INode left;
@@ -17,7 +18,7 @@ public abstract class AbstractBinaryNode extends AbstractNode implements IBinary
     }
 
     @Override
-    public abstract Double evaluate();
+    public abstract Double evaluate(HashMap<String, Double> env);
 
     @Override
     public abstract INode copy(IBinaryNode father);

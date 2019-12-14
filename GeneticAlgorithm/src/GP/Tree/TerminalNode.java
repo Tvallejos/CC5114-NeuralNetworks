@@ -1,6 +1,7 @@
 package GP.Tree;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class TerminalNode extends AbstractNode {
     private Double value;
@@ -15,7 +16,7 @@ public class TerminalNode extends AbstractNode {
     }
 
     @Override
-    public Double evaluate() {
+    public Double evaluate(HashMap<String, Double> env) {
         return value;
     }
 
@@ -25,15 +26,9 @@ public class TerminalNode extends AbstractNode {
     }
 
     @Override
-    public ArrayList<INode> serialize(ArrayList<INode> Acc) {
-        Acc.add(this);
-        return Acc;
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (o instanceof TerminalNode) {
-            return super.equals(o) && value == ((TerminalNode) o).evaluate();
+            return super.equals(o) && value == ((TerminalNode) o).evaluate(new HashMap<>());
         }
 
         return false;

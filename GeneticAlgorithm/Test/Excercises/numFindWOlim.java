@@ -1,25 +1,18 @@
 package Excercises;
 
-import GA.Allele;
 import GA.Functions.*;
 import GA.GeneticAlgorithm;
-import GA.GeneticOperators.NodeGeneticOperator;
-import GA.IGeneticAlgorithm;
 import GP.Tree.*;
-import org.junit.jupiter.api.Test;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class numFindWOlim {
     public static void main(String[] args) {
 
         GeneticAlgorithm numFindGA = new GeneticAlgorithm(300,
-                new numberFindingFitnessFunction(65348),
+                new numberFindingFitnessFunction(65348, new HashMap<>()),
                 //new numberFindingNoRep(65348),
                 //new numberFindingPlusPunishFitnessFunction(65348),
                 new TreeGenerator(
