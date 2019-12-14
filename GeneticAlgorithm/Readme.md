@@ -77,8 +77,16 @@ This Fitness function collects all terminals used and checks if it were used mor
 
 [fitness function no repetition](https://github.com/Tvallejos/CC5114-NeuralNetworks/blob/master/GeneticAlgorithm/src/GA/Functions/numberFindingNoRep.java)
 
+4. Variable Nodes
+This terminal nodes are special because we have no clue of its value before of executing the code, an example is shown in
+
+[Variable node example](https://github.com/Tvallejos/CC5114-NeuralNetworks/blob/master/GeneticAlgorithm/Test/Excercises/VariableNodeExcercise.java)
+
+as always the proof of existence of the implementation all the excercises can be found at 
+CC5114-NeuralNetworks/GeneticAlgorithm/Test/Excercises/
+
 ## Analysis
 
 ![alt text](https://github.com/Tvallejos/CC5114-NeuralNetworks/blob/master/GeneticAlgorithm/HeatMapNumFind.png "HeatMap GP")
 from this graph there is nothing we can conclude, here isn't perceptible a pattern as it was in the GA.
-
+But, as the mutation rate gets bigger the program take longer to run this is because it has to generate a new tree each generation for each individual so it is slower as mutation rate increases.
