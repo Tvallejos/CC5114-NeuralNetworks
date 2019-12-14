@@ -14,4 +14,6 @@ public interface INode {
     void setFather(IBinaryNode father);
 
     int getDepth();
+
+    ArrayList<INode> checkRepTerminals(ArrayList<INode> Acc);
 }

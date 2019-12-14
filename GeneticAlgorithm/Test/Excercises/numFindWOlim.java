@@ -19,8 +19,9 @@ public class numFindWOlim {
     public static void main(String[] args) {
 
         GeneticAlgorithm numFindGA = new GeneticAlgorithm(300,
-                //new numberFindingFitnessFunction(65348),
-                new numberFindingPlusPunishFitnessFunction(65348),
+                new numberFindingFitnessFunction(65348),
+                //new numberFindingNoRep(65348),
+                //new numberFindingPlusPunishFitnessFunction(65348),
                 new TreeGenerator(
                         //allowed func
                         new ArrayList<IBinaryNode>(

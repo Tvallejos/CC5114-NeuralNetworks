@@ -30,4 +30,5 @@ public abstract class AbstractNode implements INode {
     public int getDepth() {
         return 1;
     }
+
 }

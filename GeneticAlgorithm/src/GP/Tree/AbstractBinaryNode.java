@@ -88,4 +88,11 @@ public abstract class AbstractBinaryNode extends AbstractNode implements IBinary
     public int getDepth() {
         return 1 + Math.max(left.getDepth(), right.getDepth());
     }
+
+    @Override
+    public ArrayList<INode> checkRepTerminals(ArrayList<INode> Acc) {
+        Acc.addAll(left.checkRepTerminals(new ArrayList<>()));
+        Acc.addAll(right.checkRepTerminals(new ArrayList<>()));
+        return Acc;
+    }
 }

@@ -43,4 +43,10 @@ public class TerminalNode extends AbstractNode {
     public String toString() {
         return Double.toString(value);
     }
+
+    @Override
+    public ArrayList<INode> checkRepTerminals(ArrayList<INode> Acc) {
+        Acc.add(this);
+        return Acc;
+    }
 }
