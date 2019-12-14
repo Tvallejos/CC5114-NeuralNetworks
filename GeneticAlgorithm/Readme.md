@@ -72,6 +72,11 @@ Program a fitness function which punishes bigger trees gets too big, my solution
 * these part of the code can be found at:
 [Punish Depth](https://github.com/Tvallejos/CC5114-NeuralNetworks/blob/master/GeneticAlgorithm/src/GA/Functions/numberFindingPlusPunishFitnessFunction.java)
 
+3. no repetition
+This Fitness function collects all terminals used and checks if it were used more than once, if so it punishes the tree
+
+[fitness function no repetition](https://github.com/Tvallejos/CC5114-NeuralNetworks/blob/master/GeneticAlgorithm/src/GA/Functions/numberFindingNoRep.java)
+
 ## Analysis
 
 ![alt text](https://github.com/Tvallejos/CC5114-NeuralNetworks/blob/master/GeneticAlgorithm/HeatMapNumFind.png "HeatMap GP")
