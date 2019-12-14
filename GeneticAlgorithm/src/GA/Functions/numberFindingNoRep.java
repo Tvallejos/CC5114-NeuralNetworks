@@ -6,6 +6,7 @@ import GP.Tree.INode;
 import java.util.ArrayList;
 
 public class numberFindingNoRep extends numberFindingFitnessFunction {
+
     public numberFindingNoRep(int secretNumber) {
         super(secretNumber);
     }
