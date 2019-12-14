@@ -82,8 +82,18 @@ This terminal nodes are special because we have no clue of its value before of e
 
 [Variable node example](https://github.com/Tvallejos/CC5114-NeuralNetworks/blob/master/GeneticAlgorithm/Test/Excercises/VariableNodeExcercise.java)
 
+the changes i had to made were that i had to pass an environment for each evaluation.
+
 as always the proof of existence of the implementation all the excercises can be found at 
 CC5114-NeuralNetworks/GeneticAlgorithm/Test/Excercises/
+
+
+*not implemented*
+5.0 Symbolic regression
+just create a fitness function it must eval the node with different envs and check if its less than a rational delta, if it is you win.
+
+6.0 Division node
+if it has a relevance i will tell how would i have implemented this if i'd been better these days, the only thing that must be done is that you must throw an exception if at evaluation of the right branch you get 0.0, then catch it at the fitness function and punish, if im happier the following days i will try to do so.
 
 ## Analysis
 
