@@ -13,8 +13,6 @@ public class numFindWOlim {
 
         GeneticAlgorithm numFindGA = new GeneticAlgorithm(300,
                 new numberFindingFitnessFunction(65348, new HashMap<>()),
-                //new numberFindingNoRep(65348),
-                //new numberFindingPlusPunishFitnessFunction(65348),
                 new TreeGenerator(
                         //allowed func
                         new ArrayList<IBinaryNode>(
@@ -38,7 +36,7 @@ public class numFindWOlim {
                         10,
                         0.2),
                 0.2,
-                1000, 0);
+                10000, 0);
 
         numFindGA.run();
 
