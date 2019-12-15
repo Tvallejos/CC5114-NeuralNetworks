@@ -18,10 +18,15 @@ public class numberFindingFitnessFunction implements IFitnessFunction {
     @Override
     public int run(IIndividual i) {
         INode root = i.getGenes().get(0).getNode();
-        int value = root.evaluate(env).intValue();
-        int dif = Math.abs(secretNumber - value);
+        try {
+            int value = root.evaluate(env).intValue();
+            int dif = Math.abs(secretNumber - value);
 
-        return Math.max(0, secretNumber - dif);
+            return Math.max(0, secretNumber - dif);
+        } catch (ArithmeticException e) {
+            return 0;
+        }
+
     }
 
     @Override

@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 public class DivisionNode {
     private INode zeroDiv;
 
@@ -42,13 +44,14 @@ public class DivisionNode {
     }
 
     @BeforeEach
-    void setup(){
-        zeroDiv = new GP.Tree.DivisionNode(new TerminalNode(1.0),new TerminalNode(0.0));
+    void setup() {
+        zeroDiv = new GP.Tree.DivisionNode(new TerminalNode(1.0), new TerminalNode(0.0));
     }
 
     @Test
-    void zeroDivision(){
-        Double x = zeroDiv.evaluate(new HashMap<>());
-        System.out.println(x);
+    void zeroDivision() {
+        assertThrows(ArithmeticException.class, () -> {
+            zeroDiv.evaluate(new HashMap<>());
+        });
     }
 }

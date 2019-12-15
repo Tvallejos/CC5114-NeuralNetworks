@@ -14,7 +14,11 @@ public class DivisionNode extends AbstractBinaryNode {
 
     @Override
     public Double evaluate(HashMap<String, Double> env) {
-        return left.evaluate(env) / right.evaluate(env);
+        Double r = right.evaluate(env);
+        if (r == 0.0) {
+            throw new ArithmeticException();
+        }
+        return left.evaluate(env) / r;
     }
 
     @Override
