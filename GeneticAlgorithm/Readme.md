@@ -87,14 +87,15 @@ the changes i had to made were that i had to pass an environment for each evalua
 as always the proof of existence of the implementation all the excercises can be found at 
 CC5114-NeuralNetworks/GeneticAlgorithm/Test/Excercises/
 
-
-*not implemented*
-
 5.0 Symbolic regression
-just create a fitness function it must eval the node with different envs and check if its less than a rational delta, if it is you win.
+For doing this i had to create a new fitness function and pass to it the function to find as a node like new MultNode("x","x") and then evaluate the difference from -10 to 10 with step = 1, if the total difference was 0 it was scored as 100 and decreasing this way 100-dif until the score was 0.
+
+[Symbolic regression fitness function](https://github.com/Tvallejos/CC5114-NeuralNetworks/blob/master/GeneticAlgorithm/src/GA/Functions/symbolicRegressionFitnessFunction.java)
 
 6.0 Division node
-if it has a relevance i will tell how would i have implemented this if i'd been better these days, the only thing that must be done is that you must throw an exception if at evaluation of the right branch you get 0.0, then catch it at the fitness function and punish, if im happier the following days i will try to do so.
+The only thing i had to do was to evaluate the right side and throw and Aritmetic exception if it were 0 and then catch it at the Fitness function so we can punish the tree.
+[Div/0 handler](https://github.com/Tvallejos/CC5114-NeuralNetworks/blob/master/GeneticAlgorithm/src/GA/Functions/numberFindingFitnessFunction.java)
+
 
 ## Analysis
 
