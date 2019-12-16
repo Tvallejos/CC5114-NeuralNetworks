@@ -67,15 +67,21 @@ For the following graph the number to find was 65346 set of function was {+,-,*,
 ![alt text](https://github.com/Tvallejos/CC5114-NeuralNetworks/blob/master/GeneticAlgorithm/FitnessVsIterNumFind.png "Fitness over generation")
 
 2. fitness
-Program a fitness function which punishes bigger trees gets too big, my solution was to substract from the fitness score the cuadratic value of the depth so as the tree gets bigger it gets lesser fitness.
+Program a fitness function which punishes bigger trees gets too big, my solution was to substract from the fitness score the cuadratic value of the depth so as the tree gets bigger it gets lesser fitness. It converges a little bit faster as you can see in the following graph
+
+![alt text](https://github.com/Tvallejos/CC5114-NeuralNetworks/blob/master/GeneticAlgorithm/depthPunish.png "Depth punish")
+
 
 * these part of the code can be found at:
 [Punish Depth](https://github.com/Tvallejos/CC5114-NeuralNetworks/blob/master/GeneticAlgorithm/src/GA/Functions/numberFindingPlusPunishFitnessFunction.java)
 
 3. no repetition
-This Fitness function collects all terminals used and checks if it were used more than once, if so it punishes the tree
+This Fitness function collects all terminals used and checks if it were used more than once, if so it punishes the tree. It clearly takes more generations to converge
+
+![alt text](https://github.com/Tvallejos/CC5114-NeuralNetworks/blob/master/GeneticAlgorithm/noRep.png "No terminal repetitions")
 
 [fitness function no repetition](https://github.com/Tvallejos/CC5114-NeuralNetworks/blob/master/GeneticAlgorithm/src/GA/Functions/numberFindingNoRep.java)
+
 
 4. Variable Nodes
 This terminal nodes are special because we have no clue of its value before of executing the code, an example is shown in
@@ -89,6 +95,8 @@ CC5114-NeuralNetworks/GeneticAlgorithm/Test/Excercises/
 
 5.0 Symbolic regression
 For doing this i had to create a new fitness function and pass to it the function to find as a node like new MultNode("x","x") and then evaluate the difference from -10 to 10 with step = 1, if the total difference was 0 it was scored as 100 and decreasing this way 100-dif until the score was 0.
+
+![alt text](https://github.com/Tvallejos/CC5114-NeuralNetworks/blob/master/GeneticAlgorithm/symbolicRegression.png "Symbolic Regression")
 
 [Symbolic regression fitness function](https://github.com/Tvallejos/CC5114-NeuralNetworks/blob/master/GeneticAlgorithm/src/GA/Functions/symbolicRegressionFitnessFunction.java)
 
