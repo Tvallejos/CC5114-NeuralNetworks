@@ -57,17 +57,30 @@ public class symbolicRegression {
                                         new TerminalNode(-3.0),
                                         new TerminalNode(-2.0),
                                         new TerminalNode(-1.0),
+                                        new VariableNode("x"),
+                                        new VariableNode("x"),
+                                        new VariableNode("x"),
+                                        new VariableNode("x"),
+                                        new VariableNode("x"),
+                                        new VariableNode("x"),
+                                        new VariableNode("x"),
+                                        new VariableNode("x"),
+                                        new VariableNode("x"),
+                                        new VariableNode("x"),
+                                        new VariableNode("x"),
+                                        new VariableNode("x"),
+                                        new VariableNode("x"),
+                                        new VariableNode("x"),
                                         new VariableNode("x")
 
                                 )),
-                        10,
+                        4,
                         0.2),
                 0.2,
-                10000, 0);
+                1000, 0);
 
         numFindGA.run();
     }
-
 
 
 }

@@ -44,10 +44,10 @@ def plotFitness(data):
     ax.plot(iterations,mins,'ro', label = 'Minimum fitness')
     ax.legend(loc = 'upper center',shadow = True, fontsize='large')
     #ax..axis([0,300,0,10])
-    plt.axis([0,300,0,65000])
+    plt.axis([0,80,0,100])
     plt.xlabel('Iteration number')
     plt.ylabel('Fitness score')
-    plt.title('Fitness vs Iteration')
+    plt.title('Fitness vs Iteration at Symbolic Regression')
     plt.show()
 
 File = open("./fitnessdata.txt",'r')
